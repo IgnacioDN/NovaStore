@@ -7,3 +7,6 @@ At this stage, the application integrates a product API to display a dynamic pro
 Further improvements will include user authentication, product filters, and enhanced UX features.
 
 Stay tuned — more updates coming soon!
+
+![image](https://github.com/user-attachments/assets/ae4870c9-76e0-44b3-85d4-08fd2c2602fc)
+
