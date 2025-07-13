@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom"; // 👈 Importá Link
 import { FaBars, FaTimes, FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
-import "../styles/header.css";
+import "../styles/Header.css";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
