@@ -1,0 +1,82 @@
+/* Importar fuentes de Google */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300;400;500&display=swap');
+
+/* Definir variables de color */
+:root {
+  --primary-color: #9dadbe;
+  --secondary-color: #ecf0f1;
+  --accent-color: #3498db;
+  --text-color: #333;
+  --light-color: #ffffff;
+  --danger-color: #e74c3c;
+}
+
+/* Estilos base */
+body {
+  font-family: 'Roboto', sans-serif;
+  color: var(--text-color);
+  background-color: var(--secondary-color);
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+  color: var(--accent-color);
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+/* Botones */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-color);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  border: 1px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+}
+
+/* Contenedor principal */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Espaciados */
+.mt-1 { margin-top: 10px; }
+.mt-2 { margin-top: 20px; }
+.mt-3 { margin-top: 30px; }
+.mb-1 { margin-bottom: 10px; }
+.mb-2 { margin-bottom: 20px; }
+.mb-3 { margin-bottom: 30px; }
