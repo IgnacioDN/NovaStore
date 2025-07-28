@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from "react";
 import Rating from "../components/Rating";
 import womenBanner from "../assets/banners/friends-7050708_1280.jpg";
+import { useCart } from "../context/CartContext";
+
 
 const WomenCategory = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedPrice, setSelectedPrice] = useState("");
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const { addToCart } = useCart();
+
+
+const handleAddToCart = (product) => {
+  addToCart(product);
+};
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products/category/women's clothing")
@@ -34,8 +42,10 @@ const WomenCategory = () => {
       <div style={{ width: "100%", display: "flex", alignItems: "center", height: 56, marginBottom: 16 }}>
         <h4 style={{ fontSize: "1.05rem", fontWeight: 600, letterSpacing: 0.5, margin: 0, flex: 1, textAlign: "center" }}>Filters</h4>
         {isMobile && (
-          <button className="close-mobile-filters" onClick={onClose} title="Cerrar filtros">&times;</button>
+          <button className="close-mobile-filters" onClick={onClose} title="Close ">&times;</button>
         )}
+
+        
       </div>
       {/* Price Filter */}
       <div style={{ marginBottom: 16, width: "100%" }}>
@@ -124,7 +134,7 @@ const WomenCategory = () => {
           className="show-mobile-filters-btn"
           onClick={() => setShowMobileFilters(true)}
         >
-          Ver filtros
+          Filters
         </button>
         {/* Mobile: Drawer modal */}
         {showMobileFilters && (
@@ -155,7 +165,7 @@ const WomenCategory = () => {
                     </div>
                     <div className="product-price">${product.price}</div>
                   </div>
-                  <button className="add-to-cart-btn">Add To Cart</button>
+                  <button className="add-to-cart-btn" onClick={() => handleAddToCart(product)}>Add To Cart</button>
                 </div>
               ))}
             </div>

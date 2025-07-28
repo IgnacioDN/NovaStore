@@ -1,32 +1,30 @@
 import React, { useEffect, useRef, useState } from "react";
 import Rating from "../components/Rating";
+import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 const ProductCarousel = () => {
   const [products, setProducts] = useState([]);
   const carouselRef = useRef(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const { addToCart } = useCart();
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener("resize", handleResize);
-    
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
-    const fetchMen = fetch("https://fakestoreapi.com/products/category/men's clothing").then((res) => res.json());
-    const fetchWomen = fetch("https://fakestoreapi.com/products/category/women's clothing").then((res) => res.json());
-    const fetchFootwear = fetch("https://fakestoreapi.com/products/category/footwear").then((res) => res.json());
+    const fetchMen = fetch("https://fakestoreapi.com/products/category/men's clothing").then(res => res.json());
+    const fetchWomen = fetch("https://fakestoreapi.com/products/category/women's clothing").then(res => res.json());
+    const fetchFootwear = fetch("https://fakestoreapi.com/products/category/footwear").then(res => res.json());
 
-    Promise.all([fetchMen, fetchWomen, fetchFootwear])
-      .then(([men, women, footwear]) => {
-        const combined = [...men, ...women, ...footwear];
-        const shuffled = combined.sort(() => Math.random() - 0.4).slice(0, 4);
-        setProducts(shuffled);
-      });
+    Promise.all([fetchMen, fetchWomen, fetchFootwear]).then(([men, women, footwear]) => {
+      const combined = [...men, ...women, ...footwear];
+      const shuffled = combined.sort(() => Math.random() - 0.4).slice(0, 4);
+      setProducts(shuffled);
+    });
   }, []);
 
   const scrollCarousel = (direction) => {
@@ -57,16 +55,27 @@ const ProductCarousel = () => {
             {products.map(product => (
               <div key={product.id} className="product-card">
                 <div className="product-img">
-                  <img src={product.image} alt={product.title} />
+                  <Link to={`/product/${product.id}`}>
+                    <img src={product.image} alt={product.title} />
+                  </Link>
                 </div>
-                <div className="product-title">{product.title}</div>
+                <div className="product-title">
+                  <Link to={`/product/${product.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                    {product.title}
+                  </Link>
+                </div>
                 <div className="product-info">
                   <div className="product-rating">
                     <Rating value={product.rating.rate} count={product.rating.count} />
                   </div>
                   <div className="product-price">${product.price}</div>
                 </div>
-                <button className="add-to-cart-btn">Add To Cart</button>
+                <button
+                  className="add-to-cart-btn"
+                  onClick={() => addToCart(product)}
+                >
+                  Add To Cart
+                </button>
               </div>
             ))}
           </div>

@@ -1,10 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // 👈 Importá Link
+import { Link } from "react-router-dom";
 import { FaBars, FaTimes, FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
+import { useCart } from "../context/CartContext";
 import "../styles/Header.css";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // 🍔 Contexto del carrito
+  const { cart } = useCart();
+  const cartCount = cart.reduce((acc, item) => acc + (item.quantity || 1), 0);
 
   return (
     <>
@@ -38,8 +43,11 @@ const Header = () => {
               <FaSearch className="icon" />
               <FaUser className="icon" />
 
-              <Link to="/checkout">
+              <Link to="/checkout" className="cart-icon-link">
                 <FaShoppingCart className="icon" />
+                {cartCount > 0 && (
+                  <span className="cart-badge">{cartCount}</span>
+                )}
               </Link>
             </div>
           </div>

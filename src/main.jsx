@@ -1,13 +1,15 @@
-// src/main.jsx o src/index.jsx (dependiendo de tu proyecto)
-
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import { CartProvider } from "./context/CartContext";
 import App from "./App";
-import { CartProvider } from "./context/CartContext"; // Importar el CartProvider
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <CartProvider>
-    <App />
-  </CartProvider>
+  <React.StrictMode>
+    <CartProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </CartProvider>
+  </React.StrictMode>
 );
-

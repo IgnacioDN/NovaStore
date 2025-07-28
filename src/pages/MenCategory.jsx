@@ -1,34 +1,56 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Rating from "../components/Rating";
 import menBanner from "../assets/banners/man-815795_1280.jpg";
+import { useCart } from "../context/CartContext";
 
 const MenCategory = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedPrice, setSelectedPrice] = useState('');
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const [selectedSizes, setSelectedSizes] = useState([]);
+  const { addToCart } = useCart();
 
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products/category/men's clothing")
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching men's products:", error);
-        setLoading(false);
-      });
-  }, []);
+
+const handleAddToCart = (product) => {
+  addToCart(product);
+};
+
+
+useEffect(() => {
+  fetch("https://fakestoreapi.com/products/category/men's clothing")
+    .then((res) => res.json())
+    .then((data) => {
+      const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
+      const enriched = data.map(product => ({
+        ...product,
+        size: sizes[Math.floor(Math.random() * sizes.length)]
+      }));
+      setProducts(enriched);
+      setLoading(false);
+    })
+    .catch((error) => {
+      console.error("Error fetching men's products:", error);
+      setLoading(false);
+    });
+}, []);
+
 
   // Filter logic
-  const filteredProducts = products.filter(product => {
-    if (!selectedPrice) return true;
-    if (selectedPrice === 'low') return product.price < 30;
-    if (selectedPrice === 'mid') return product.price >= 30 && product.price < 60;
-    if (selectedPrice === 'high') return product.price >= 60;
-    return true;
-  });
+const filteredProducts = products.filter(product => {
+  const matchPrice =
+    !selectedPrice ||
+    (selectedPrice === 'low' && product.price < 30) ||
+    (selectedPrice === 'mid' && product.price >= 30 && product.price < 60) ||
+    (selectedPrice === 'high' && product.price >= 60);
+
+  const matchSize =
+    selectedSizes.length === 0 || selectedSizes.includes(product.size);
+
+  return matchPrice && matchSize;
+});
+
 
   const FiltersSidebar = ({ isMobile = false, onClose }) => (
     <aside className={isMobile ? "sidebar-mobile-modal" : "sidebar-desktop"}>
@@ -51,26 +73,31 @@ const MenCategory = () => {
       {/* Sizes Filter */}
       <div style={{ marginBottom: 8, width: '100%' }}>
         <label style={{ fontWeight: 500, fontSize: '0.97rem', marginBottom: 6, display: 'block' }}>Sizes</label>
-        <div className="sizes-list">
-          <label className="size-filter">
-            <input type="checkbox" id={(isMobile ? "mob-size-s" : "size-s")} name="size" value="S" /> S
-          </label>
-          <label className="size-filter">
-            <input type="checkbox" id={(isMobile ? "mob-size-m" : "size-m")} name="size" value="M" /> M
-          </label>
-          <label className="size-filter">
-            <input type="checkbox" id={(isMobile ? "mob-size-l" : "size-l")} name="size" value="L" /> L
-          </label>
-          <label className="size-filter">
-            <input type="checkbox" id={(isMobile ? "mob-size-xl" : "size-xl")} name="size" value="XL" /> XL
-          </label>
-          <label className="size-filter">
-            <input type="checkbox" id={(isMobile ? "mob-size-xxl" : "size-xxl")} name="size" value="XXL" /> XXL
-          </label>
-        </div>
+<div className="sizes-list">
+  {['S', 'M', 'L', 'XL', 'XXL'].map(size => (
+    <label className="size-filter" key={size}>
+      <input
+        type="checkbox"
+        value={size}
+        checked={selectedSizes.includes(size)}
+        onChange={() => toggleSize(size)}
+      /> {size}
+    </label>
+  ))}
+</div>
+
       </div>
     </aside>
   );
+
+  // Toggle selected sizes
+const toggleSize = (size) => {
+  setSelectedSizes((prevSizes) =>
+    prevSizes.includes(size)
+      ? prevSizes.filter((s) => s !== size)
+      : [...prevSizes, size]
+  );
+};
 
   return (
     <section className="products-section" style={{ display: 'flex', alignItems: 'flex-start', flexDirection: 'column' }}>
@@ -125,7 +152,7 @@ const MenCategory = () => {
           className="show-mobile-filters-btn"
           onClick={() => setShowMobileFilters(true)}
         >
-          Ver filtros
+          Filters
         </button>
         {/* Mobile: Drawer modal */}
         {showMobileFilters && (
@@ -145,21 +172,23 @@ const MenCategory = () => {
             <p>Loading products...</p>
           ) : (
             <div className="product-grid-category product-grid-center-mobile" style={{ paddingBottom: 48 }}>
-              {filteredProducts.map((product) => (
-                <div key={product.id} className="product-card">
-                  <div className="product-img">
-                    <img src={product.image} alt={product.title} />
-                  </div>
-                  <div className="product-title">{product.title}</div>
-                  <div className="product-info">
-                    <div className="product-rating">
-                      <Rating value={product.rating.rate} count={product.rating.count} />
-                    </div>
-                    <div className="product-price">${product.price}</div>
-                  </div>
-                  <button className="add-to-cart-btn">Add To Cart</button>
-                </div>
-              ))}
+      {filteredProducts.map((product) => (
+  <div key={product.id} className="product-card">
+    <Link to={`/product/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+      <div className="product-img">
+        <img src={product.image} alt={product.title} />
+      </div>
+      <div className="product-title">{product.title}</div>
+      <div className="product-info">
+        <div className="product-rating">
+          <Rating value={product.rating.rate} count={product.rating.count} />
+        </div>
+        <div className="product-price">${product.price}</div>
+      </div>
+    </Link>
+    <button className="add-to-cart-btn" onClick={() => handleAddToCart(product)}>Add To Cart</button>
+  </div>
+))}
             </div>
           )}
         </div>
@@ -289,7 +318,6 @@ const MenCategory = () => {
             position: relative;
             display: flex;
             flex-direction: column;
-            animation: slideInLeft 0.2s ease;
           }
           @keyframes slideInLeft {
             from { transform: translateX(-100%); }

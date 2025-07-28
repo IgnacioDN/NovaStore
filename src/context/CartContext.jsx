@@ -1,32 +1,58 @@
 import React, { createContext, useContext, useState } from "react";
 
-// Crear un contexto vacío para el carrito
 const CartContext = createContext();
 
-// Proveedor del carrito para envolver la aplicación
 export const CartProvider = ({ children }) => {
-  // Estado del carrito, con un array vacío por defecto
   const [cart, setCart] = useState([]);
+  const [isCartModalOpen, setCartModalOpen] = useState(false);
+  const [lastAdded, setLastAdded] = useState(null);
 
-  // Función para agregar productos al carrito
-  const addToCart = (product) => {
-    setCart((prevCart) => [...prevCart, product]);
+  const addToCart = (product, quantity = 1) => {
+    setCart((prev) => {
+      const exists = prev.find((p) => p.id === product.id);
+      if (exists) {
+        return prev.map((p) =>
+          p.id === product.id
+            ? { ...p, quantity: (p.quantity || 1) + quantity }
+            : p
+        );
+      }
+      return [...prev, { ...product, quantity }];
+    });
+    setLastAdded(product);
+    setCartModalOpen(true);
   };
 
-  // Función para quitar productos del carrito
-  const removeFromCart = (productId) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
+    // Sumar/restar cantidad de un producto
+  const updateQty = (id, delta) => {
+    setCart((prev) =>
+      prev.map((item) =>
+        item.id === id
+          ? { ...item, quantity: Math.max(1, (item.quantity || 1) + delta) }
+          : item
+      )
+    );
   };
 
-  // Devolver el proveedor del contexto con los valores necesarios
+  
+
+  const closeModal = () => setCartModalOpen(false);
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        addToCart,
+        setCart,
+        updateQty,
+        isCartModalOpen,
+        closeModal,
+        lastAdded,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
 };
 
-// Hook para usar el carrito en otros componentes
-export const useCart = () => {
-  return useContext(CartContext);
-};
+export const useCart = () => useContext(CartContext);
