@@ -1,15 +1,40 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes, FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
 import { useCart } from "../context/CartContext";
 import "../styles/Header.css";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchText, setSearchText] = useState("");
+  const searchInputRef = useRef(null);
+  const navigate = useNavigate();
 
   // 🍔 Contexto del carrito
   const { cart } = useCart();
   const cartCount = cart.reduce((acc, item) => acc + (item.quantity || 1), 0);
+
+  // Autofocus cuando aparece el input
+  useEffect(() => {
+    if (searchOpen && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [searchOpen]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchText.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchText.trim())}`);
+      setSearchOpen(false);
+      setSearchText("");
+    }
+  };
+
+  // Cierra el input si se pierde el foco y no hay texto
+  const handleBlur = () => {
+    if (!searchText) setSearchOpen(false);
+  };
 
   return (
     <>
@@ -40,10 +65,31 @@ const Header = () => {
             </ul>
 
             <div className="nav-icons">
-              <FaSearch className="icon" />
-              <FaUser className="icon" />
+              {/* Buscador: icono y campo */}
+              {!searchOpen ? (
+                <FaSearch className="icon" onClick={() => setSearchOpen(true)} />
+              ) : (
+                <form className="search-form" onSubmit={handleSearch}>
+                  <input
+                    type="text"
+                    placeholder="Buscar..."
+                    value={searchText}
+                    ref={searchInputRef}
+                    onChange={e => setSearchText(e.target.value)}
+                    onBlur={handleBlur}
+                    className="search-input"
+                  />
+                  <button type="submit" className="search-btn">
+                    <FaSearch />
+                  </button>
+                </form>
+              )}
 
-              <Link to="/checkout" className="cart-icon-link">
+              <Link to="/login">
+                <FaUser className="icon" />
+              </Link>
+
+              <Link to="/cart" className="cart-icon-link">
                 <FaShoppingCart className="icon" />
                 {cartCount > 0 && (
                   <span className="cart-badge">{cartCount}</span>

@@ -58,32 +58,84 @@ max-width: 1200px;
 }
 
 .pdp-add-to-cart-wrapper {
+  margin-top: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.pdp-cart-row {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.pdp-size-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  gap: 0.6rem;
+}
+
+.pdp-quantity-selector {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 0.3rem;
+  border: 1.5px solid #ddd;
+  border-radius: 6px;
+  background: #fafbfc;
+  padding: 5px 8px;
+  min-width: 112px;
+  height: 42px;
+  box-sizing: border-box;
+  transition: border-color 0.18s;
 }
+
+
 
 .pdp-quantity-input {
   width: 60px;
-  padding: 8px;
-  font-size: 1rem;
+  padding: 8px 0;
+  font-size: 1.07rem;
+  border: 1.5px solid #ddd;
+  border-radius: 5px;
+  background: #fafbfc;
+  color: #222;
+  text-align: center;
+  font-weight: 500;
+  outline: none;
+  transition: border-color 0.17s, box-shadow 0.17s;
+  box-shadow: 0 1px 2px rgba(80,80,160,0.03);
+}
+
+.pdp-quantity-input:focus {
+  border-color: #222;
+  box-shadow: 0 0 0 2px #2222;
+}
+.pdp-quantity-input::-webkit-inner-spin-button,
+.pdp-quantity-input::-webkit-outer-spin-button {
+  opacity: 0.7;
 }
 
 .pdp-add-to-cart-btn {
-  background-color: #000;
+  background: #222;
   color: #fff;
   border: none;
-  padding: 12px 24px;
-  font-size: 1rem;
+  border-radius: 8px;
+  padding: 0.5rem;
+  font-size: 1.15rem;
+  font-weight: bold;
   cursor: pointer;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
+  transition: background .18s;
+  letter-spacing: 0.02em;
+  min-width: 160px;
+}
+.pdp-add-to-cart-btn:hover {
+  background: #444;
 }
 
-.pdp-add-to-cart-btn:hover {
-  background-color: #444;
-}
 
 .pdp-product-category-tags {
   font-size: 0.9rem;
@@ -94,7 +146,7 @@ max-width: 1200px;
 .pdp-product-benefits {
     display: flex;
     gap: 10px;
-    padding-top: 26px;
+    padding-top: 6px;
     border-top: 1px solid #ddd;
       justify-content: flex-start;
 
@@ -135,18 +187,67 @@ display: flex;
   margin-bottom: 2px;
 }
 
-.pdp-quantity-selector {
-    display: inline-flex;
-    align-items: center;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    overflow: hidden;
-    background: #fff;
-    margin-right: 0;
-    width: auto;
-    max-width: 92px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+
+.pdp-size-label {
+  font-weight: 600;
+  font-size: 1.08rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.04em;
 }
+
+.pdp-size-btn {
+  padding: 0.55rem 1.1rem;
+  font-size: 1.08rem;
+  background: #fff;
+  border: 1.5px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 
+    border-color 0.18s,
+    background 0.18s,
+    color 0.18s;
+  color: #222;
+}
+
+.pdp-size-btn.selected,
+.pdp-size-btn:focus {
+  border-color: #222;
+  background: #222;
+  color: #fff;
+}
+.pdp-size-btn:active {
+  background: #444;
+  color: #fff;
+}
+.pdp-size-btn:disabled {
+  border-color: #ccc;
+  color: #aaa;
+  background: #f8f8f8;
+  cursor: not-allowed;
+}
+
+
+.pdp-size-options {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.pdp-size-selector select {
+  padding: 0.47rem 1rem;
+  border-radius: 7px;
+  border: 1px solid #bbb;
+  font-size: 1.08rem;
+  background: #fafbfc;
+  color: #222;
+  transition: border-color 0.18s;
+}
+
+.pdp-size-selector select:focus {
+  border-color: #222;
+  outline: none;
+}
+
 
 
 .pdp-qty-btn {
@@ -161,21 +262,22 @@ display: flex;
   user-select: none;
 }
 
-.pdp-qty-btn:active {
-  background: #ededed;
-}
 .pdp-qty-btn:hover {
-  background: #f5f5f5;
+  color: #222;
 }
 
+
 .pdp-qty-value {
-  padding: 0 10px;
-  min-width: 24px;
-  text-align: center;
-  font-size: 1rem;
+  min-width: 28px;
+  font-size: 1.09rem;
   font-weight: 500;
-  background: #fff;
+  color: #222;
+  text-align: center;
+  background: none;
   border: none;
+  outline: none;
+  user-select: none;
+  padding: 0 8px;
 }
 
 .pdp-product-category-tags {
@@ -484,18 +586,175 @@ display: flex;
 
 /* Apilar los beneficios en dos columnas en mobile */
 @media (max-width: 600px) {
+
+
   .pdp-product-benefits {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 16px 12px;
+    justify-items: center;
+    align-items: stretch;
+    width: 100%;
+    padding: 0 12px;
+  }
+
+    .pdp-add-to-cart-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    margin-bottom: 1.2rem;
+    width: 100%;
+  }
+
+    .pdp-sizes-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    width: 100%;
+    margin-bottom: 0.8rem;
+  }
+
+
+  .pdp-size-label {
+    font-size: 1.06rem;
+    margin-bottom: 6px;
+    font-weight: 600;
+    text-align: left;
+    width: 100%;
+  }
+
+    .pdp-size-options {
+    display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
+    gap: 0.5rem;
+    justify-content: left;
+    width: 100%;
   }
+
+  .pdp-size-btn {
+    min-width: 44px;
+    padding: 0.45rem 0.7rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin-bottom: 0.2rem;
+  }
+
+
   .pdp-benefit-item {
-    min-width: 145px;
-    width: 45vw;
-    max-width: 90vw;
+    width: 100%;
+    min-width: 0;
+    max-width: 98vw;
     margin-bottom: 0;
-    padding: 12px 2vw;
+    padding: 14px 6px 12px 6px;
+    box-sizing: border-box;
+    font-size: 0.96rem;
   }
+
+  .pdp-product-info {
+    padding: 0 6px;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+
+  .pdp-size-selector {
+    width: 100%;
+    gap: 0.6rem;
+    margin-bottom: 1.1rem;
+  }
+   
+
+   .pdp-product-description {
+    padding-left: 4px;
+    padding-right: 4px;
+    font-size: 1rem;
+  }
+  .pdp-product-title,
+  .pdp-product-price {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+   .pdp-product-images {
+        background: #fff;
+        border-radius: 10px;
+        padding: 18px 12px 14px 12px;
+        margin-bottom: 10px;
+        width: 100vw;
+        max-width: 400px;
+        box-shadow: 0 2px 12px rgba(80, 80, 160, 0.07);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+  .pdp-main-image {
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: contain;
+    background: #fff;
+    box-shadow: none;
+  }
+
+  .pdp-add-to-cart-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    margin-bottom: 1.2rem;
+    width: 100%;
+  }
+
+      .pdp-details-tabs-vertical {
+        flex-direction: column;
+        min-height: 0;
+        padding: 10px;
+    }
+
+
+      /* Fila 2: add to cart y cantidad, apilados y centrados */
+
+.pdp-cart-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 0.7rem;
+        width: 100%;
+        margin-bottom: 1.2rem;
+    }
+  .pdp-add-to-cart-btn {
+    width: 100%;
+    font-size: 1.04rem;
+    padding: 0.9rem 0;
+    border-radius: 8px;
+    margin-bottom: 0;
+  }
+
+  .pdp-qty-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+    padding: 0;
+  }
+  .pdp-qty-value {
+    min-width: 30px;
+    font-size: 1rem;
+    padding: 2px 0;
+  }
+
+    .pdp-quantity-selector {
+        width: 100%;
+        justify-content: center;
+        padding: 1.6rem !important;
+        border-radius: 6px;
+        margin: 0;
+        gap: 0.3rem;
+        background: #fafbfc;
+    }
 }
 
 /* Apilar los beneficios en columna en pantallas muy chicas */

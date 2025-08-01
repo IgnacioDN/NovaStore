@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Rating from '../components/Rating';
 import { useCart } from "../context/CartContext";
 import "../styles/ProductDetail.css";
-import '@fortawesome/fontawesome-free/css/all.min.css';
 
 // Reviews simuladas para mostrar una opinión random
 const randomReviews = [
@@ -27,10 +26,13 @@ const randomReviews = [
   }
 ];
 
+const availableSizes = ["S", "M", "L", "XL"];
+
 const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [selectedSize, setSelectedSize] = useState(""); // Estado para talle
   const [activeTab, setActiveTab] = useState('description');
   const navigate = useNavigate();
   const { addToCart } = useCart();
@@ -77,20 +79,20 @@ const ProductDetail = () => {
     }
   };
 
- if (!product) {
-  return (
-    <div className="pdp-product-detail-container">
-      <div className="pdp-product-images skeleton" />
-      <div className="pdp-product-info">
-        <div className="skeleton skeleton-title" />
-        <div className="skeleton skeleton-price" />
-        <div className="skeleton skeleton-rating" />
-        <div className="skeleton skeleton-description" />
-        <div className="skeleton skeleton-button" />
+  if (!product) {
+    return (
+      <div className="pdp-product-detail-container">
+        <div className="pdp-product-images skeleton" />
+        <div className="pdp-product-info">
+          <div className="skeleton skeleton-title" />
+          <div className="skeleton skeleton-price" />
+          <div className="skeleton skeleton-rating" />
+          <div className="skeleton skeleton-description" />
+          <div className="skeleton skeleton-button" />
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
   return (
     <div>
@@ -111,43 +113,66 @@ const ProductDetail = () => {
           </div>
           <p className="pdp-product-description">{product.description}</p>
           <div className="pdp-add-to-cart-wrapper">
-            <div className="pdp-quantity-selector">
-              <button onClick={handleDecrease} className="pdp-qty-btn">-</button>
-              <span className="pdp-qty-value">{quantity}</span>
-              <button onClick={handleIncrease} className="pdp-qty-btn">+</button>
-            </div>
-            <button
-  className="pdp-add-to-cart-btn"
-  onClick={() => {
-    addToCart(product, quantity); 
-    navigate("/checkout");
-  }}
->
-  Add to cart
-</button>
-          </div>
-          <div className="pdp-product-benefits">
-            <div className="pdp-benefit-item">
-              <i className="fa fa-truck"></i>
-              <strong className="pdp-benefit-title">Free Shipping</strong>
-              <span className="pdp-benefit-desc">Orders over $200</span>
-            </div>
-            <div className="pdp-benefit-item">
-              <i className="fa fa-shield-alt"></i>
-              <strong className="pdp-benefit-title">30 Day Guarantee</strong>
-              <span className="pdp-benefit-desc">Shop with confidence</span>
-            </div>
-            <div className="pdp-benefit-item">
-              <i className="fa fa-headset"></i>
-              <strong className="pdp-benefit-title">Premium Support</strong>
-              <span className="pdp-benefit-desc">7 days a week</span>
-            </div>
-            <div className="pdp-benefit-item">
-              <i className="fa fa-lock"></i>
-              <strong className="pdp-benefit-title">Secure Payments</strong>
-              <span className="pdp-benefit-desc">Protected checkout</span>
-            </div>
-          </div>
+            {/* Selector de talle */}
+      <div className="pdp-size-selector">
+  <label className="pdp-size-label">Sizes</label>
+  <div className="pdp-size-options">
+    {availableSizes.map(size => (
+      <button
+        key={size}
+        type="button"
+        className={`pdp-size-btn${selectedSize === size ? " selected" : ""}`}
+        onClick={() => setSelectedSize(size)}
+      >
+        {size}
+      </button>
+    ))}
+  </div>
+ 
+</div>
+  <div className="pdp-cart-row">
+    <button
+      className="pdp-add-to-cart-btn"
+      onClick={() => {
+        if (!selectedSize) {
+          alert("Por favor elegí un talle antes de agregar al carrito");
+          return;
+        }
+        addToCart({ ...product, size: selectedSize }, quantity); 
+navigate("/cart");
+      }}
+    >
+      Add to cart
+    </button>
+    <div className="pdp-quantity-selector">
+      <button onClick={handleDecrease} className="pdp-qty-btn">-</button>
+      <span className="pdp-qty-value">{quantity}</span>
+      <button onClick={handleIncrease} className="pdp-qty-btn">+</button>
+    </div>
+  </div>
+</div>
+ <div className="pdp-product-benefits">
+  <div className="pdp-benefit-item">
+    <i className="fa-solid fa-truck"></i>
+    <strong className="pdp-benefit-title">Free Shipping</strong>
+    <span className="pdp-benefit-desc">Orders over $200</span>
+  </div>
+  <div className="pdp-benefit-item">
+    <i className="fa-solid fa-shield-halved"></i>
+    <strong className="pdp-benefit-title">30 Day Guarantee</strong>
+    <span className="pdp-benefit-desc">Shop with confidence</span>
+  </div>
+  <div className="pdp-benefit-item">
+    <i className="fa-solid fa-headset"></i>
+    <strong className="pdp-benefit-title">Premium Support</strong>
+    <span className="pdp-benefit-desc">7 days a week</span>
+  </div>
+  <div className="pdp-benefit-item">
+    <i className="fa-solid fa-lock"></i>
+    <strong className="pdp-benefit-title">Secure Payments</strong>
+    <span className="pdp-benefit-desc">Protected checkout</span>
+  </div>
+</div>
         </div>
       </div>
 

@@ -40,10 +40,10 @@ const CartModal = () => {
           className="cart-modal-checkout-btn"
           onClick={() => {
             closeModal();
-            navigate("/checkout");
+            navigate("/cart");
           }}
         >
-          Ir al checkout
+          Proceed to Checkout
         </button>
       </div>
     </div>

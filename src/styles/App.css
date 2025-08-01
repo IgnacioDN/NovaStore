@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif !important; /* forzamos sobre Bootstrap */
   background-color: #f8f9fa;
   color: #212529;
   overflow-y: auto;
@@ -11,7 +11,6 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
-
 #root {
   display: flex;
   flex-direction: column;
@@ -20,6 +19,7 @@ body {
 
 h1, h2, h3 {
   font-weight: 600;
+
 }
 
 main {
@@ -85,10 +85,6 @@ main {
 }
 
 
-
-.products-section {
-  /* padding: 2rem 0; */
-}
 
 .products-container {
   max-width: 1200px; 
@@ -780,6 +776,20 @@ hr {
 }
 .checkout-summary {
   margin: 18px 0 22px 0;
+}
+
+
+.fa-solid {
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 900 !important;
+}
+.fa-regular {
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 400 !important;
+}
+.fa-brands {
+  font-family: "Font Awesome 6 Brands" !important;
+  font-weight: 400 !important;
 }
 
 @media (max-width: 768px) {
