@@ -67,11 +67,32 @@ const MenCategory = () => {
     fetch("https://fakestoreapi.com/products/category/men's clothing")
       .then((res) => res.json())
       .then((data) => {
-        const enriched = data.map(product => ({
+        // Enriquecer productos con talla y color aleatorios
+        let enriched = data.map(product => ({
           ...product,
           size: sizes[Math.floor(Math.random() * sizes.length)],
           color: colors[Math.floor(Math.random() * colors.length)].name
         }));
+
+        // AGREGAR MOCKS EXTRA SI ES NECESARIO
+        if (enriched.length < 8) {
+          // Clona productos existentes con id únicos y títulos diferentes
+          const clones = [];
+          for (let i = 0; i < 8 - enriched.length; i++) {
+            const base = enriched[i % enriched.length];
+            clones.push({
+              ...base,
+              id: base.id + '-clone' + i,
+              title: base.title + " (New)",
+              price: (base.price * (1 + Math.random() * 0.2)).toFixed(2),
+              size: sizes[Math.floor(Math.random() * sizes.length)],
+              color: colors[Math.floor(Math.random() * colors.length)].name,
+              image: base.image // o usa otra imagen si tienes
+            });
+          }
+          enriched = enriched.concat(clones);
+        }
+
         setProducts(enriched);
         setLoading(false);
       })

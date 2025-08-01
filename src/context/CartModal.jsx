@@ -18,24 +18,31 @@ const CartModal = () => {
   if (!isCartModalOpen || location.pathname === "/checkout" || !lastAdded) return null;
 
   return (
-    <div className="cart-modal-overlay">
-      <div className="cart-modal-box">
+    <div className="cart-modal-overlay" onClick={closeModal}>
+      <div
+        className="cart-modal-box cart-modal-animated"
+        onClick={e => e.stopPropagation()}
+      >
         <button className="cart-modal-close" onClick={closeModal}>
           &times;
         </button>
-        <h2>{lastAdded.title}</h2>
+        <div className="cart-modal-check-icon">
+          <i className="fa-solid fa-circle-check"></i>
+        </div>
+        <h3 className="cart-modal-title">
+          You added <span style={{ fontWeight: 700 }}>{lastAdded.title}</span> to your cart!
+        </h3>
         <img
           src={lastAdded.image}
           alt={lastAdded.title}
           className="cart-modal-img"
         />
-        <p>
-          <b>Price:</b> ${lastAdded.price}
-        </p>
-        <p>
-          <b>Rating:</b>{" "}
-          {lastAdded.rating?.rate || "-"} <span style={{ color: "#ffc107" }}>★</span>
-        </p>
+        <div className="cart-modal-product-details">
+          <span><b>Price:</b> ${lastAdded.price}</span>
+          <span>
+            <b>Rating:</b> {lastAdded.rating?.rate || "-"} <span style={{ color: "#ffc107" }}>★</span>
+          </span>
+        </div>
         <button
           className="cart-modal-checkout-btn"
           onClick={() => {
@@ -43,8 +50,11 @@ const CartModal = () => {
             navigate("/cart");
           }}
         >
-          Proceed to Checkout
+          View Cart
         </button>
+        <p className="cart-modal-extra-text">
+          You can continue shopping or view your cart.
+        </p>
       </div>
     </div>
   );
