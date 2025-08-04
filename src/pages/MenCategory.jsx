@@ -67,16 +67,16 @@ const MenCategory = () => {
     fetch("https://fakestoreapi.com/products/category/men's clothing")
       .then((res) => res.json())
       .then((data) => {
-        // Enriquecer productos con talla y color aleatorios
+        // Enrich products with random size and color
         let enriched = data.map(product => ({
           ...product,
           size: sizes[Math.floor(Math.random() * sizes.length)],
           color: colors[Math.floor(Math.random() * colors.length)].name
         }));
 
-        // AGREGAR MOCKS EXTRA SI ES NECESARIO
+        // ADD EXTRA MOCKS IF NECESSARY
         if (enriched.length < 8) {
-          // Clona productos existentes con id únicos y títulos diferentes
+          // Clone existing products with unique ids and different titles
           const clones = [];
           for (let i = 0; i < 8 - enriched.length; i++) {
             const base = enriched[i % enriched.length];
@@ -542,13 +542,18 @@ const MenCategory = () => {
         .show-mobile-filters-btn {
           border: 1px solid #adadad;
           border-radius: 10px;
-          font-size: 1.05rem;
+          font-size: 0.95rem;
           font-weight: 600;
-          padding: 10px 16px;
+          padding: 8px 14px;
           box-shadow: 0 2px 8px #0001;
           cursor: pointer;
           display: flex;
           align-items: center;
+          background: white;
+          transition: all 0.2s ease;
+        }
+        .show-mobile-filters-btn:active {
+          transform: scale(0.98);
         }
         .order-mobile-dropdown {
           position: relative;
@@ -557,37 +562,43 @@ const MenCategory = () => {
         .orderby-mobile-btn {
           border: 1px solid #adadad;
           border-radius: 10px;
-          font-size: 1.05rem;
+          font-size: 0.95rem;
           font-weight: 600;
-          padding: 10px 16px;
+          padding: 8px 14px;
           box-shadow: 0 2px 8px #0001;
           cursor: pointer;
           display: flex;
           align-items: center;
           gap: 5px;
+          background: white;
+          transition: all 0.2s ease;
+        }
+        .orderby-mobile-btn:active {
+          transform: scale(0.98);
         }
         .order-mobile-dropdown-list {
           position: absolute;
           right: 0;
-          top: 44px;
+          top: 42px;
           background: #fff;
           border: 1px solid #d6d7db;
           box-shadow: 0 4px 16px #0003;
           border-radius: 10px;
           z-index: 1001;
-          padding: 10px 20px 10px 12px;
-          min-width: 170px;
+          padding: 8px 16px 8px 10px;
+          min-width: 160px;
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: 6px;
         }
         .order-mobile-dropdown-list label {
-          font-size: 1.01rem;
+          font-size: 0.95rem;
           font-weight: 400;
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 6px;
           cursor: pointer;
+          padding: 0.2rem 0;
         }
 
         /* ----------- MOBILE MODAL ----------- */
@@ -595,13 +606,36 @@ const MenCategory = () => {
           position: fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,.25); z-index:10000; display:flex; align-items: stretch; justify-content: flex-start;
         }
         .filters-modal-drawer {
-          background:#fff; width:86vw; max-width:370px; height:100vh; border-radius:0 18px 18px 0; box-shadow:2px 0 16px #0002; padding:22px 16px 22px 22px;
+          background:#fff; width:80vw; max-width:320px; height:100vh; border-radius:0 18px 18px 0; box-shadow:2px 0 16px #0002; padding:18px 14px 18px 18px;
           animation: slideInLeft .22s;
+          overflow-y: auto;
+        }
+
+        .filters-modal-content {
+          display: flex;
+          flex-direction: column;
+          gap: 1.2rem;
+        }
+
+        .filters-modal-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 1rem;
+          padding-bottom: 0.8rem;
+          border-bottom: 1px solid #e0e0e0;
+        }
+
+        .filters-modal-section {
+          margin-bottom: 1rem;
         }
 
         .filters-modal-label {
-        font-size: 1.2rem;
-        font-weight 600;
+          font-size: 1.1rem;
+          font-weight: 600;
+          margin-bottom: 0.8rem;
+          display: block;
+          color: #333;
         }
 
         @keyframes slideInLeft {
@@ -610,13 +644,34 @@ const MenCategory = () => {
         }
         .filter-options-list.filter-options-vertical {
           flex-direction: column;
+          gap: 0.4rem;
         }
         .filter-options-list label {
           display: flex;
           align-items: center;
-          gap: 8px;
-          font-size: 1.02rem;
-          margin-bottom: 7px;
+          gap: 0.6rem;
+          font-size: 0.95rem;
+          margin-bottom: 0.4rem;
+          padding: 0.3rem 0;
+          cursor: pointer;
+          transition: color 0.2s ease;
+        }
+        .filter-options-list label:hover {
+          color: #007bff;
+        }
+        .filter-options-list input[type="checkbox"],
+        .filter-options-list input[type="radio"] {
+          width: 16px;
+          height: 16px;
+          margin: 0;
+          accent-color: #007bff;
+        }
+        .color-circle {
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          display: inline-block;
+          border: 2px solid #ddd;
         }
 
         /* ----------- PRODUCT GRID MOBILE ----------- */

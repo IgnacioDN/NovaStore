@@ -1,0 +1,257 @@
+.blog-landing-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  display: grid;
+  gap: 4rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(135deg,#2e3d55 0%,#1f293e 70%);
+  color: #fff;
+  align-items: center;
+  gap: 2rem;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('https://via.placeholder.com/1200x600') center/cover no-repeat;
+  opacity: 0.25;
+  filter: brightness(0.9);
+  z-index: 0;
+}
+.hero-content {
+  position: relative;
+  flex: 1;
+  z-index: 1;
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  margin: 0 0 .5rem;
+}
+.hero p {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+}
+.hero-ctas .btn {
+  margin-right: 0.75rem;
+}
+.btn {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.btn.primary {
+  background: #000;
+  color: #fff;
+}
+.btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0,0,0,.2);
+}
+
+.newsletter-block .btn-news {
+  padding: 12px 20px!important;
+  font-size: 1rem !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  background: #000 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.btn.outline {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+}
+.btn.outline:hover {
+  background: rgba(255,255,255,.1);
+}
+
+.categories {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.pill {
+  padding: .5rem 1rem;
+  border-radius: 999px;
+  background: #e2e6ec;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background .2s ease;
+}
+.pill.active {
+  background: #000;
+  color: #fff;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+  gap: 1.5rem;
+}
+
+.guides-info-card {
+    padding: 0 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all .6s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,.08);
+}
+.reveal-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+.card.featured {
+  grid-column: span 1;
+}
+.card .image-wrapper img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 3/2;
+  transition: transform .3s ease;
+}
+.card .info {
+  padding: 1rem 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.card .meta {
+  display: flex;
+  gap: .75rem;
+  font-size: .75rem;
+  color: #555;
+  margin-bottom: .5rem;
+}
+.card h2 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+.card p {
+  flex: 1;
+  margin: .75rem 0;
+  color: #555;
+  font-size: .95rem;
+}
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.read-more {
+  background: none;
+  border: none;
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+.card .image-wrapper:hover img {
+  transform: scale(1.03);
+}
+
+.newsletter-block {
+  background: #f0f4fa;
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.newsletter-inner {
+  display: flex;
+  gap: 2rem;
+  flex: 1;
+  min-width: 280px;
+}
+.subscribe-form {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+align-items: center;
+}
+.subscribe-form input {
+  padding: .75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  flex: 1;
+  min-width: 200px;
+}
+.about-author {
+  padding: 1rem 0;
+}
+.author-card {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+}
+.author-card img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+.author-card .bio {
+  flex: 1;
+}
+.cta-final {
+  text-align: center;
+  background: #1f293e;
+  padding: 2.5rem 1rem;
+  border-radius: 12px;
+  color: #fff;
+}
+.cta-final button {
+  margin-top: 1rem;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    padding: 2rem 1rem;
+  }
+  .hero-ctas {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+  }
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+  .newsletter-inner {
+    flex-direction: column;
+  }
+  .author-card {
+    flex-direction: column;
+    text-align: center;
+  }
+}

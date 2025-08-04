@@ -1,0 +1,282 @@
+/* Place Order Modal Styles */
+.place-order-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.place-order-modal {
+  background: white;
+  border-radius: 20px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  animation: modalSlideIn 0.4s ease-out;
+  position: relative;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.place-order-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #666;
+  font-size: 1.1rem;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.place-order-modal-close:hover {
+  background: rgba(0, 0, 0, 0.15);
+  color: #333;
+  transform: scale(1.1);
+}
+
+.place-order-success-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  border-radius: 50%;
+  margin: 2rem auto 1.5rem;
+  color: white;
+  font-size: 2.5rem;
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+  animation: successPulse 0.6s ease-out;
+}
+
+@keyframes successPulse {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.place-order-content {
+  padding: 0 2rem 2rem;
+  text-align: center;
+}
+
+.place-order-content h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.place-order-message {
+  color: #666;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+.order-details-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.order-details-card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.order-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.order-detail-row:last-child {
+  border-bottom: none;
+}
+
+.order-detail-row span:first-child {
+  color: #666;
+  font-weight: 500;
+}
+
+.order-detail-row span:last-child {
+  font-weight: 600;
+  color: #333;
+}
+
+.order-number {
+  color: #007bff !important;
+  font-family: monospace;
+  font-size: 0.95rem;
+}
+
+.order-total {
+  color: #28a745 !important;
+  font-size: 1.1rem;
+}
+
+.place-order-info {
+  background: linear-gradient(135deg, #e3f2fd, #f1f8e9);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.place-order-info p {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+.place-order-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.continue-shopping-btn,
+.go-home-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.continue-shopping-btn {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.continue-shopping-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+}
+
+.go-home-btn {
+  background: linear-gradient(135deg, #6c757d, #545b62);
+  color: white;
+  box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+}
+
+.go-home-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .place-order-modal-overlay {
+    padding: 0.5rem;
+  }
+  
+  .place-order-modal {
+    border-radius: 16px;
+    max-height: 95vh;
+  }
+  
+  .place-order-success-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 2rem;
+    margin: 1.5rem auto 1rem;
+  }
+  
+  .place-order-content {
+    padding: 0 1.5rem 1.5rem;
+  }
+  
+  .place-order-content h2 {
+    font-size: 1.5rem;
+  }
+  
+  .place-order-message {
+    font-size: 1rem;
+  }
+  
+  .order-details-card {
+    padding: 1rem;
+  }
+  
+  .place-order-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .continue-shopping-btn,
+  .go-home-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .place-order-modal-overlay {
+    padding: 0.25rem;
+  }
+  
+  .place-order-content {
+    padding: 0 1rem 1rem;
+  }
+  
+  .place-order-content h2 {
+    font-size: 1.3rem;
+  }
+  
+  .order-details-card {
+    padding: 0.75rem;
+  }
+}

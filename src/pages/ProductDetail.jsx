@@ -4,24 +4,24 @@ import Rating from '../components/Rating';
 import { useCart } from "../context/CartContext";
 import "../styles/ProductDetail.css";
 
-// Reviews simuladas para mostrar una opinión random
+// Sample reviews to show a random opinion
 const randomReviews = [
   {
-    name: "Juan P.",
+    name: "John P.",
     rating: 5,
-    comment: "¡Excelente producto! Llegó rápido y es de muy buena calidad.",
+    comment: "Excellent product! Arrived quickly and is of very good quality.",
     date: "2024-06-01"
   },
   {
-    name: "María G.",
+    name: "Maria G.",
     rating: 4,
-    comment: "Cumple con lo prometido, volvería a comprar.",
+    comment: "Lives up to what was promised, would buy again.",
     date: "2024-07-12"
   },
   {
-    name: "Pedro R.",
+    name: "Peter R.",
     rating: 3,
-    comment: "Bueno, pero el empaque llegó un poco dañado.",
+    comment: "Good, but the packaging arrived a bit damaged.",
     date: "2024-05-15"
   }
 ];
@@ -32,7 +32,7 @@ const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
-  const [selectedSize, setSelectedSize] = useState(""); // Estado para talle
+  const [selectedSize, setSelectedSize] = useState(""); // State for size
   const [activeTab, setActiveTab] = useState('description');
   const navigate = useNavigate();
   const { addToCart } = useCart();
@@ -46,7 +46,7 @@ const ProductDetail = () => {
     fetch(`https://fakestoreapi.com/products/${id}`)
       .then(res => res.json())
       .then(data => setProduct(data));
-    // Al cargar, una review random
+    // Load a random review on component mount
     setReviews([randomReviews[Math.floor(Math.random() * randomReviews.length)]]);
   }, [id]);
 
@@ -113,7 +113,7 @@ const ProductDetail = () => {
           </div>
           <p className="pdp-product-description">{product.description}</p>
           <div className="pdp-add-to-cart-wrapper">
-            {/* Selector de talle */}
+            {/* Size selector */}
       <div className="pdp-size-selector">
   <label className="pdp-size-label">Sizes</label>
   <div className="pdp-size-options">
@@ -135,7 +135,7 @@ const ProductDetail = () => {
       className="pdp-add-to-cart-btn"
       onClick={() => {
         if (!selectedSize) {
-          alert("Por favor elegí un talle antes de agregar al carrito");
+          alert("Please select a size before adding to cart");
           return;
         }
         addToCart({ ...product, size: selectedSize }, quantity); 
@@ -176,7 +176,7 @@ navigate("/cart");
         </div>
       </div>
 
-      {/* BLOQUE DE TABS ESTILO DOCUMENTACIÓN */}
+      {/* VERTICAL TABS BLOCK - DOCUMENTATION STYLE */}
       <div className="pdp-details-tabs-vertical">
         <div className="pdp-tabs-sidebar">
           <button
@@ -209,7 +209,7 @@ navigate("/cart");
                 </div>
               )}
 
-              {/* Opiniones de clientes */}
+              {/* Customer reviews */}
               <div className="pdp-customer-opinions">
                 {reviews.length > 0 ? reviews.map((r, idx) => (
                   <div className="pdp-customer-review" key={idx}>
@@ -227,7 +227,7 @@ navigate("/cart");
                 )) : <div>No reviews yet.</div>}
               </div>
 
-              {/* Formulario para nueva opinión */}
+              {/* Form for new review */}
               <form className="pdp-review-form" onSubmit={handleReviewSubmit}>
                 <h4>Write your review</h4>
                 <input
@@ -254,7 +254,7 @@ navigate("/cart");
                   ))}
                 </div>
                 <textarea
-                  placeholder="Your opinion..."
+                  placeholder="Your comment..."
                   name="comment"
                   value={form.comment}
                   onChange={handleFormChange}

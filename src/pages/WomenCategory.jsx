@@ -572,13 +572,36 @@ const WomenCategory = () => {
           position: fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,.25); z-index:10000; display:flex; align-items: stretch; justify-content: flex-start;
         }
         .filters-modal-drawer {
-          background:#fff; width:86vw; max-width:370px; height:100vh; border-radius:0 18px 18px 0; box-shadow:2px 0 16px #0002; padding:22px 16px 22px 22px;
+          background:#fff; width:80vw; max-width:320px; height:100vh; border-radius:0 18px 18px 0; box-shadow:2px 0 16px #0002; padding:18px 14px 18px 18px;
           animation: slideInLeft .22s;
+          overflow-y: auto;
+        }
+
+        .filters-modal-content {
+          display: flex;
+          flex-direction: column;
+          gap: 1.2rem;
+        }
+
+        .filters-modal-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 1rem;
+          padding-bottom: 0.8rem;
+          border-bottom: 1px solid #e0e0e0;
+        }
+
+        .filters-modal-section {
+          margin-bottom: 1rem;
         }
 
         .filters-modal-label {
-        font-size: 1.2rem;
-        font-weight 600;
+          font-size: 1.1rem;
+          font-weight: 600;
+          margin-bottom: 0.8rem;
+          display: block;
+          color: #333;
         }
 
         @keyframes slideInLeft {
@@ -587,14 +610,25 @@ const WomenCategory = () => {
         }
         .filter-options-list.filter-options-vertical {
           flex-direction: column;
-          gap: 0 !important;
+          gap: 0.4rem;
         }
         .filter-options-list label {
           display: flex;
           align-items: center;
           gap: 8px;
-          font-size: 1.02rem;
-          margin-bottom: 7px;
+          font-size: 0.95rem;
+          margin-bottom: 4px;
+          padding: 0.3rem 0;
+          cursor: pointer;
+          border-radius: 4px;
+          transition: all 0.2s ease;
+        }
+        .filter-options-list label:hover {
+          background-color: rgba(0, 0, 0, 0.05);
+          padding-left: 0.2rem;
+        }
+        .filter-options-list label:active {
+          transform: scale(0.98);
         }
 
         /* ----------- PRODUCT GRID MOBILE ----------- */

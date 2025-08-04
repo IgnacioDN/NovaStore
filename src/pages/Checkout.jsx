@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useCart } from "../context/CartContext";
+import PlaceOrderModal from "../components/PlaceOrderModal";
 import "../styles/Checkout.css";
 
 export default function Checkout() {
@@ -11,6 +12,8 @@ export default function Checkout() {
   const [paymentMethod, setPaymentMethod] = useState("credit");
   const [cardNumber, setCardNumber] = useState("");
   const [cardName, setCardName] = useState("");
+  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+  const [orderDetails, setOrderDetails] = useState(null);
 
   const userName = "Ignacio Diaz Neila";
   const userAddress = "Roseti 709, CHACARITA, Buenos Aires, 1212, Argentina";
@@ -18,17 +21,30 @@ export default function Checkout() {
   const subtotal = cart.reduce((acc, prod) => acc + prod.price * prod.quantity, 0);
 
   const handleOrder = () => {
-    // Simula validación básica
+    // Basic validation
     if (paymentMethod === "credit" && (!cardNumber || !cardName)) {
-      setError("Por favor completa los datos de la tarjeta.");
+      setError("Please complete the card details.");
       return;
     }
     if (!paymentMethod) {
-      setError("Por favor selecciona un método de pago.");
+      setError("Please select a payment method.");
       return;
     }
-    setError(""); // Si todo bien, podrías avanzar con el proceso de pago
-    alert("¡Pedido realizado! (Simulado)");
+    
+    setError(""); 
+    
+    // Create order details
+    const orderData = {
+      orderNumber: 'NO-' + Date.now(),
+      total: subtotal.toFixed(2),
+      itemCount: cart.reduce((acc, item) => acc + item.quantity, 0),
+      email: email,
+      paymentMethod: paymentMethod,
+      items: cart
+    };
+    
+    setOrderDetails(orderData);
+    setIsOrderModalOpen(true);
   };
 
   return (
@@ -171,6 +187,12 @@ export default function Checkout() {
           </div>
         </div>
       </div>
+      
+      <PlaceOrderModal 
+        isOpen={isOrderModalOpen}
+        onClose={() => setIsOrderModalOpen(false)}
+        orderDetails={orderDetails}
+      />
     </div>
   );
 }

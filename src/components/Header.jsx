@@ -1,39 +1,38 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes, FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
 import { useCart } from "../context/CartContext";
 import "../styles/Header.css";
+import "../styles/SearchModal.css";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
-  const searchInputRef = useRef(null);
+  const searchModalInputRef = useRef(null);
   const navigate = useNavigate();
 
-  // 🍔 Contexto del carrito
   const { cart } = useCart();
   const cartCount = cart.reduce((acc, item) => acc + (item.quantity || 1), 0);
 
-  // Autofocus cuando aparece el input
   useEffect(() => {
-    if (searchOpen && searchInputRef.current) {
-      searchInputRef.current.focus();
+    if (searchModalOpen && searchModalInputRef.current) {
+      searchModalInputRef.current.focus();
     }
-  }, [searchOpen]);
+  }, [searchModalOpen]);
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchText.trim()) {
       navigate(`/search?q=${encodeURIComponent(searchText.trim())}`);
-      setSearchOpen(false);
+      setSearchModalOpen(false);
       setSearchText("");
     }
   };
 
-  // Cierra el input si se pierde el foco y no hay texto
-  const handleBlur = () => {
-    if (!searchText) setSearchOpen(false);
+  const openSearchModal = () => {
+    setSearchModalOpen(true);
+    setMenuOpen(false);
   };
 
   return (
@@ -45,9 +44,9 @@ const Header = () => {
         <nav className="main-header">
           <div className="header-container">
             <div className="header__logo">
-              <Link to="/" onClick={() => setMenuOpen(false)}>
+              <NavLink to="/" onClick={() => setMenuOpen(false)}>
                 <h1>NovaStore</h1>
-              </Link>
+              </NavLink>
             </div>
 
             {menuOpen ? (
@@ -57,48 +56,124 @@ const Header = () => {
             )}
 
             <ul className={`nav-menu ${menuOpen ? "open" : ""}`}>
-              <li><Link to="/men" onClick={() => setMenuOpen(false)}>Men</Link></li>
-              <li><Link to="/women" onClick={() => setMenuOpen(false)}>Women</Link></li>
-              <li><Link to="/accessories" onClick={() => setMenuOpen(false)}>Accesories</Link></li>
-              <li><Link to="#" onClick={() => setMenuOpen(false)}>Blog</Link></li>
-              <li><Link to="#" onClick={() => setMenuOpen(false)}>Shop</Link></li>
+              <li>
+                <NavLink to="/men" onClick={() => setMenuOpen(false)} className={({ isActive }) => (isActive ? "active" : "")}>
+                  Men
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/women" onClick={() => setMenuOpen(false)} className={({ isActive }) => (isActive ? "active" : "")}>
+                  Women
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/accessories" onClick={() => setMenuOpen(false)} className={({ isActive }) => (isActive ? "active" : "")}>
+                  Accessories
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/blog" onClick={() => setMenuOpen(false)} className={({ isActive }) => (isActive ? "active" : "")}>
+                  Blog
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/shop" onClick={() => setMenuOpen(false)} className={({ isActive }) => (isActive ? "active" : "")}>
+                  Shop
+                </NavLink>
+              </li>
             </ul>
 
             <div className="nav-icons">
-              {/* Buscador: icono y campo */}
-              {!searchOpen ? (
-                <FaSearch className="icon" onClick={() => setSearchOpen(true)} />
-              ) : (
-                <form className="search-form" onSubmit={handleSearch}>
-                  <input
-                    type="text"
-                    placeholder="Buscar..."
-                    value={searchText}
-                    ref={searchInputRef}
-                    onChange={e => setSearchText(e.target.value)}
-                    onBlur={handleBlur}
-                    className="search-input"
-                  />
-                  <button type="submit" className="search-btn">
-                    <FaSearch />
-                  </button>
-                </form>
-              )}
+              <FaSearch className="icon search-icon" onClick={openSearchModal} />
 
-              <Link to="/login">
+              <NavLink to="/login">
                 <FaUser className="icon" />
-              </Link>
+              </NavLink>
 
-              <Link to="/cart" className="cart-icon-link">
+              <NavLink to="/cart" className="cart-icon-link">
                 <FaShoppingCart className="icon" />
-                {cartCount > 0 && (
-                  <span className="cart-badge">{cartCount}</span>
-                )}
-              </Link>
+                {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
+              </NavLink>
             </div>
           </div>
         </nav>
       </header>
+
+      {/* Search Modal */}
+      {searchModalOpen && (
+        <div className="search-modal-overlay" onClick={() => setSearchModalOpen(false)}>
+          <div className="search-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="search-modal-header">
+              <h3>Search Products</h3>
+              <button 
+                className="search-modal-close" 
+                onClick={() => setSearchModalOpen(false)}
+              >
+                <FaTimes />
+              </button>
+            </div>
+            <form className="search-modal-form" onSubmit={handleSearch}>
+              <div className="search-input-group">
+                <FaSearch className="search-icon" />
+                <input
+                  type="text"
+                  placeholder="What are you looking for?"
+                  value={searchText}
+                  ref={searchModalInputRef}
+                  onChange={(e) => setSearchText(e.target.value)}
+                  className="search-modal-input"
+                />
+              </div>
+              
+              <div className="popular-searches">
+                <h4>Popular Searches</h4>
+                <div className="popular-searches-grid">
+                  <button 
+                    type="button"
+                    className="popular-search-item" 
+                    onClick={() => { 
+                      setSearchText('jacket'); 
+                      searchModalInputRef.current?.focus();
+                    }}
+                  >
+                    Jackets
+                  </button>
+                  <button 
+                    type="button"
+                    className="popular-search-item" 
+                    onClick={() => { 
+                      setSearchText('dress'); 
+                      searchModalInputRef.current?.focus();
+                    }}
+                  >
+                    Dresses
+                  </button>
+                  <button 
+                    type="button"
+                    className="popular-search-item" 
+                    onClick={() => { 
+                      setSearchText('shoes'); 
+                      searchModalInputRef.current?.focus();
+                    }}
+                  >
+                    Shoes
+                  </button>
+                  <button 
+                    type="button"
+                    className="popular-search-item" 
+                    onClick={() => { 
+                      setSearchText('accessories'); 
+                      searchModalInputRef.current?.focus();
+                    }}
+                  >
+                    Accessories
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </>
   );
 };

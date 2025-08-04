@@ -23,7 +23,7 @@ export const CartProvider = ({ children }) => {
     setCartModalOpen(true);
   };
 
-    // Sumar/restar cantidad de un producto
+    // Add/subtract quantity of a product
   const updateQty = (id, delta) => {
     setCart((prev) =>
       prev.map((item) =>
@@ -32,6 +32,11 @@ export const CartProvider = ({ children }) => {
           : item
       )
     );
+  };
+
+  // Clear all items from cart
+  const clearCart = () => {
+    setCart([]);
   };
 
   
@@ -45,6 +50,7 @@ export const CartProvider = ({ children }) => {
         addToCart,
         setCart,
         updateQty,
+        clearCart,
         isCartModalOpen,
         closeModal,
         lastAdded,

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Rating from "../components/Rating";
 import { useCart } from "../context/CartContext";
-import { Link } from "react-router-dom"; // <--- Agregar import
+import { Link } from "react-router-dom"; // <--- Add import
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
