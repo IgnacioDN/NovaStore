@@ -1,0 +1,47 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle with gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a1a"/>
+      <stop offset="100%" style="stop-color:#000000"/>
+    </linearGradient>
+  </defs>
+  
+  <circle cx="32" cy="32" r="32" fill="url(#bgGradient)"/>
+  
+  <!-- Nova star burst -->
+  <g transform="translate(32, 32)">
+    <!-- Main star -->
+    <path d="M0 -16L3 -5L16 -4L5 3L4 16L-3 5L-16 4L-5 -3L-4 -16L3 -5Z" 
+          fill="#ffffff" opacity="0.95"/>
+    
+    <!-- Inner glow -->
+    <path d="M0 -12L2.2 -3.8L12 -3L3.8 2.2L3 12L-2.2 3.8L-12 3L-3.8 -2.2L-3 -12L2.2 -3.8Z" 
+          fill="#ffffff" opacity="0.6"/>
+    
+    <!-- Accent stars -->
+    <circle cx="10" cy="-10" r="2" fill="#ffffff" opacity="0.8"/>
+    <circle cx="-10" cy="10" r="2" fill="#ffffff" opacity="0.8"/>
+    <circle cx="10" cy="10" r="1.5" fill="#ffffff" opacity="0.6"/>
+    <circle cx="-10" cy="-10" r="1.5" fill="#ffffff" opacity="0.6"/>
+    
+    <!-- Sparkles -->
+    <circle cx="14" cy="0" r="1" fill="#ffffff" opacity="0.7"/>
+    <circle cx="-14" cy="0" r="1" fill="#ffffff" opacity="0.7"/>
+    <circle cx="0" cy="14" r="1" fill="#ffffff" opacity="0.7"/>
+    <circle cx="0" cy="-14" r="1" fill="#ffffff" opacity="0.7"/>
+  </g>
+  
+  <!-- Store element - stylized shopping bag -->
+  <g transform="translate(32, 45)">
+    <path d="M-8 0h16l2-12h-20l2 12z" fill="#ffffff" opacity="0.85"/>
+    <path d="M-4 -12v-2c0-2.2 1.8-4 4-4s4 1.8 4 4v2" 
+          stroke="#ffffff" stroke-width="2.5" fill="none" opacity="0.85"/>
+    <!-- Handle details -->
+    <circle cx="-4" cy="-6" r="0.5" fill="#000000" opacity="0.3"/>
+    <circle cx="4" cy="-6" r="0.5" fill="#000000" opacity="0.3"/>
+  </g>
+  
+  <!-- Subtle brand ring -->
+  <circle cx="32" cy="32" r="30" stroke="#ffffff" stroke-width="0.5" fill="none" opacity="0.2"/>
+</svg>

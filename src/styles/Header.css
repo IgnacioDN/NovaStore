@@ -187,10 +187,10 @@
       flex-direction: column;
       background-color: #111;
       position: absolute;
-      top: 70px;
+      top: 60px;
       left: 0;
       right: 0;
-      padding: 1rem 2rem;
+      padding: 0.5rem 2rem;
       gap: 1rem;
       z-index: 10;
     }
@@ -236,10 +236,10 @@
       flex-direction: column;
       background-color: #111;
       position: absolute;
-      top: 70px;
+      top: 60px;
       left: 0;
       right: 0;
-      padding: 1rem 2rem;
+      padding: 0.5rem 2rem;
       gap: 1rem;
       z-index: 10;
     }

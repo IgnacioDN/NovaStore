@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Rating from '../components/Rating';
+import SizeSelectionModal from '../components/SizeSelectionModal';
 import { useCart } from "../context/CartContext";
 import "../styles/ProductDetail.css";
 
@@ -34,6 +35,7 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState(""); // State for size
   const [activeTab, setActiveTab] = useState('description');
+  const [showSizeModal, setShowSizeModal] = useState(false);
   const navigate = useNavigate();
   const { addToCart } = useCart();
 
@@ -135,7 +137,7 @@ const ProductDetail = () => {
       className="pdp-add-to-cart-btn"
       onClick={() => {
         if (!selectedSize) {
-          alert("Please select a size before adding to cart");
+          setShowSizeModal(true);
           return;
         }
         addToCart({ ...product, size: selectedSize }, quantity); 
@@ -269,6 +271,12 @@ navigate("/cart");
           )}
         </div>
       </div>
+      
+      {/* Size Selection Modal */}
+      <SizeSelectionModal 
+        isOpen={showSizeModal} 
+        onClose={() => setShowSizeModal(false)} 
+      />
     </div>
   );
 };

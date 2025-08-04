@@ -235,23 +235,104 @@ align-items: center;
 }
 
 @media (max-width: 900px) {
+  .blog-landing-wrapper {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 1rem 0.5rem;
+    box-sizing: border-box;
+  }
+  
   .hero {
     flex-direction: column;
     padding: 2rem 1rem;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
   }
+  
+  .hero-content {
+    width: 100%;
+    text-align: center;
+  }
+  
   .hero-ctas {
     display: flex;
     flex-direction: column;
     gap: .75rem;
+    width: 100%;
+    align-items: center;
   }
+  
+  .categories {
+    justify-content: center;
+    padding: 0 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
   .featured-grid {
     grid-template-columns: 1fr;
+    width: 100%;
+    padding: 0 0.5rem;
+    box-sizing: border-box;
   }
+  
+  .card {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .newsletter-block {
+    width: 100%;
+    margin: 0;
+    padding: 1.5rem 1rem;
+    box-sizing: border-box;
+  }
+  
   .newsletter-inner {
     flex-direction: column;
+    width: 100%;
+    text-align: center;
   }
+  
+  .subscribe-form {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .subscribe-form input {
+    width: 100%;
+    max-width: 280px;
+    min-width: 0;
+  }
+  
   .author-card {
     flex-direction: column;
     text-align: center;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  .about-author {
+    width: 100%;
+    padding: 1rem 0.5rem;
+    box-sizing: border-box;
+  }
+  
+  .cta-final {
+    width: 100%;
+    margin: 0;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+  }
+  
+  .guides-info-card {
+    padding: 0 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left;
   }
 }

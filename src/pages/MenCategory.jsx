@@ -370,7 +370,10 @@ const MenCategory = () => {
               <h2>Men's Clothing</h2>
             </div>
             {loading ? (
-              <p>Loading products...</p>
+              <div className="shop-loading">
+                <div className="loading-spinner"></div>
+                <p>Loading products...</p>
+              </div>
             ) : (
               <div className="product-grid-category product-grid-center-mobile" style={{ paddingBottom: 48 }}>
                 {filteredProducts.map((product) => (
@@ -742,6 +745,34 @@ const MenCategory = () => {
           align-self: flex-end !important;
           border: 1px solid #c2c2c2;
           margin-left: 10px;
+        }
+
+        /* Loading Spinner Styles */
+        .shop-loading {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 400px;
+          padding: 2rem;
+          text-align: center;
+        }
+        .shop-loading p {
+          margin-top: 1rem;
+          font-size: 1.2rem;
+          color: #666;
+        }
+        .loading-spinner {
+          width: 40px;
+          height: 40px;
+          border: 3px solid #f3f3f3;
+          border-top: 3px solid #333;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
         }
       `}</style>
     </section>

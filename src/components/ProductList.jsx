@@ -29,7 +29,7 @@ const ProductList = () => {
       <div className="products-container">
         <div className="products-header">
           <h2>Newest Products</h2>
-          <a href="#">See More</a>
+          <Link to="/shop">See More</Link>
         </div>
         {loading ? (
           <p>Loading Products...</p>

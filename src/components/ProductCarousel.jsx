@@ -39,8 +39,8 @@ const ProductCarousel = () => {
     <section className="products-section">
       <div className="products-container">
         <div className="products-header">
-          <h2>Recomendations</h2>
-          <a href="#">See More</a>
+          <h2>Recommendations</h2>
+          <Link to="/shop">See More</Link>
         </div>
 
         <div className="carousel-wrapper">
