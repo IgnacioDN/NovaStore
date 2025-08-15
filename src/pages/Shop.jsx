@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Rating from "../components/Rating";
 import { useCart } from "../context/CartContext";
+import { fixProductImages, handleImageError } from "../utils/imageUtils";
 import "../styles/Shop.css";
 
 const CATEGORY_LABELS = {
@@ -41,7 +42,8 @@ const Shop = () => {
         
         const byCat = {};
         CATEGORY_KEYS.forEach((cat, idx) => {
-          byCat[cat] = responses[idx] || [];
+          const rawProducts = responses[idx] || [];
+          byCat[cat] = fixProductImages(rawProducts);
         });
         
         setProductsByCat(byCat);
@@ -129,7 +131,12 @@ const Shop = () => {
                   <div className="shop-carousel-card" key={product.id}>
                     <div className="shop-carousel-img">
                       <Link to={`/product/${product.id}`}>
-                        <img src={product.image} alt={product.title} />
+                        <img 
+                          src={product.image} 
+                          alt={product.title} 
+                          onError={handleImageError}
+                          loading="lazy"
+                        />
                       </Link>
                     </div>
                     <div className="shop-carousel-title">

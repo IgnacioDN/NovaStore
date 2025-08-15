@@ -49,10 +49,10 @@
 }
 
 .login-form {
-  padding: 2.5rem 2rem;
+  padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .input-group {
@@ -185,8 +185,8 @@
 
 .login-footer {
   text-align: center;
-  margin-top: 1rem;
-  padding-top: 1.5rem;
+  margin-top: 0.2rem;
+  padding-top: 0.6rem;
   border-top: 1px solid #f0f0f0;
 }
 
@@ -212,7 +212,9 @@
 @media (max-width: 768px) {
   .login-page {
     padding: 1rem;
-    min-height: 100vh;
+    min-height: 70vh;
+    align-items: flex-start;
+    padding-top: 3rem;
   }
   
   .login-container {
@@ -229,7 +231,7 @@
   }
   
   .login-form {
-    padding: 2rem 1.5rem;
+    padding: 1.5rem;
     gap: 1.25rem;
   }
   
@@ -245,6 +247,11 @@
 }
 
 @media (max-width: 480px) {
+  .login-page {
+    padding-top: 2rem;
+    min-height: 60vh;
+  }
+  
   .login-header {
     padding: 1.5rem 1rem;
   }

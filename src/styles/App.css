@@ -1148,3 +1148,25 @@ hr {
     right: 156px;
 }
 }
+
+@media (max-width: 400px) {
+  .carousel-btn.left {
+    left: 136px;
+  }
+  .carousel-btn.right {
+    right: 136px;
+}
+}
+
+
+@media (min-width: 1400px) {
+  .informative-banner .video-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .informative-banner .newsletter-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}

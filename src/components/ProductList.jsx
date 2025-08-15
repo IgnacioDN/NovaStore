@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Rating from "../components/Rating";
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom"; // <--- Add import
+import { fixProductImages, handleImageError } from "../utils/imageUtils";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -15,7 +16,8 @@ const ProductList = () => {
     Promise.all([fetchMen, fetchWomen])
       .then(([menProducts, womenProducts]) => {
         const combined = [...menProducts, ...womenProducts].slice(0, 8);
-        setProducts(combined);
+        const fixedProducts = fixProductImages(combined);
+        setProducts(fixedProducts);
         setLoading(false);
       })
       .catch((error) => {
@@ -39,7 +41,12 @@ const ProductList = () => {
               <div key={product.id} className="product-card">
                 <div className="product-img">
                   <Link to={`/product/${product.id}`}>
-                    <img src={product.image} alt={product.title} />
+                    <img 
+                      src={product.image} 
+                      alt={product.title} 
+                      onError={handleImageError}
+                      loading="lazy"
+                    />
                   </Link>
                 </div>
                 <div className="product-title">

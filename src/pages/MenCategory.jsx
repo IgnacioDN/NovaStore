@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Rating from "../components/Rating";
 import menBanner from "../assets/banners/man-815795_1280.jpg";
 import { useCart } from "../context/CartContext";
+import { fixProductImages, handleImageError } from "../utils/imageUtils";
 
 // Opciones de filtro
 const orderOptions = [
@@ -67,8 +68,11 @@ const MenCategory = () => {
     fetch("https://fakestoreapi.com/products/category/men's clothing")
       .then((res) => res.json())
       .then((data) => {
+        // Fix image URLs first
+        const dataWithFixedImages = fixProductImages(data);
+        
         // Enrich products with random size and color
-        let enriched = data.map(product => ({
+        let enriched = dataWithFixedImages.map(product => ({
           ...product,
           size: sizes[Math.floor(Math.random() * sizes.length)],
           color: colors[Math.floor(Math.random() * colors.length)].name
@@ -380,7 +384,12 @@ const MenCategory = () => {
                   <div key={product.id} className="product-card">
                     <Link to={`/product/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                       <div className="product-img">
-                        <img src={product.image} alt={product.title} />
+                        <img 
+                          src={product.image} 
+                          alt={product.title}
+                          onError={handleImageError}
+                          loading="lazy"
+                        />
                       </div>
                       <div className="product-title">{product.title}</div>
                       <div className="product-info">

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Rating from '../components/Rating';
 import SizeSelectionModal from '../components/SizeSelectionModal';
 import { useCart } from "../context/CartContext";
+import { fixImageUrl, handleImageError } from "../utils/imageUtils";
 import "../styles/ProductDetail.css";
 
 // Sample reviews to show a random opinion
@@ -47,7 +48,14 @@ const ProductDetail = () => {
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${id}`)
       .then(res => res.json())
-      .then(data => setProduct(data));
+      .then(data => {
+        // Fix the image URL
+        const fixedProduct = {
+          ...data,
+          image: fixImageUrl(data.image)
+        };
+        setProduct(fixedProduct);
+      });
     // Load a random review on component mount
     setReviews([randomReviews[Math.floor(Math.random() * randomReviews.length)]]);
   }, [id]);
@@ -100,7 +108,13 @@ const ProductDetail = () => {
     <div>
       <div className="pdp-product-detail-container">
         <div className="pdp-product-images">
-          <img src={product.image} alt={product.title} className="pdp-main-image" />
+          <img 
+            src={product.image} 
+            alt={product.title} 
+            className="pdp-main-image" 
+            onError={handleImageError}
+            loading="lazy"
+          />
         </div>
         <div className="pdp-product-info">
           <h1 className="pdp-product-title">{product.title}</h1>

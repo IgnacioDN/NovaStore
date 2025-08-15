@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Rating from "../components/Rating";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { fixProductImages, handleImageError } from "../utils/imageUtils";
 
 const ProductCarousel = () => {
   const [products, setProducts] = useState([]);
@@ -23,7 +24,9 @@ const ProductCarousel = () => {
     Promise.all([fetchMen, fetchWomen, fetchFootwear]).then(([men, women, footwear]) => {
       const combined = [...men, ...women, ...footwear];
       const shuffled = combined.sort(() => Math.random() - 0.4).slice(0, 4);
-      setProducts(shuffled);
+      // Fix image URLs before setting products
+      const productsWithFixedImages = fixProductImages(shuffled);
+      setProducts(productsWithFixedImages);
     });
   }, []);
 
@@ -56,7 +59,12 @@ const ProductCarousel = () => {
               <div key={product.id} className="product-card">
                 <div className="product-img">
                   <Link to={`/product/${product.id}`}>
-                    <img src={product.image} alt={product.title} />
+                    <img 
+                      src={product.image} 
+                      alt={product.title}
+                      onError={handleImageError}
+                      loading="lazy"
+                    />
                   </Link>
                 </div>
                 <div className="product-title">

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import Rating from "./Rating";
 import { useCart } from "../context/CartContext";
+import { fixProductImages, handleImageError } from "../utils/imageUtils";
 import "../styles/Shop.css";
 
 // Helper para obtener el parámetro q
@@ -34,7 +35,8 @@ export default function Search() {
         
         // Flatten all products from fashion categories
         const allFashionProducts = responses.flat();
-        setProducts(allFashionProducts);
+        const fixedProducts = fixProductImages(allFashionProducts);
+        setProducts(fixedProducts);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -94,7 +96,12 @@ export default function Search() {
               <div className="shop-carousel-card search-product-card" key={product.id}>
                 <div className="shop-carousel-img">
                   <Link to={`/product/${product.id}`}>
-                    <img src={product.image} alt={product.title} />
+                    <img 
+                      src={product.image} 
+                      alt={product.title} 
+                      onError={handleImageError}
+                      loading="lazy"
+                    />
                   </Link>
                 </div>
                 <div className="shop-carousel-title">
