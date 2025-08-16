@@ -1,6 +1,5 @@
 # 🛍️ NovaStore - Modern E-Commerce Platform
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/your-site-id/deploy-status)](https://app.netlify.com/sites/your-site/deploys)
 [![React](https://img.shields.io/badge/React-18+-blue.svg)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-5+-purple.svg)](https://vitejs.dev/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
