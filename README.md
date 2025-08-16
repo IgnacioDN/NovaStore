@@ -285,7 +285,6 @@ We welcome contributions! Please follow these steps:
 
 ## 📞 Support & Contact
 
-- **Issues**: [GitHub Issues](https://github.com/IgnacioDN/NovaStore/issues)
 - **Email**: [ignaciodiazneila@gmail.com]
 - **LinkedIn**: [https://www.linkedin.com/in/ignacio-agustin-diaz-neila-0359581b4/]
 
