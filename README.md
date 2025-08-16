@@ -287,8 +287,8 @@ We welcome contributions! Please follow these steps:
 ## 📞 Support & Contact
 
 - **Issues**: [GitHub Issues](https://github.com/IgnacioDN/NovaStore/issues)
-- **Email**: [your-email@example.com]
-- **LinkedIn**: [Your LinkedIn Profile]
+- **Email**: [ignaciodiazneila@gmail.com]
+- **LinkedIn**: [https://www.linkedin.com/in/ignacio-agustin-diaz-neila-0359581b4/]
 
 ## 📄 License
 
@@ -302,6 +302,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ![NovaStore Logo](public/logo.png)
 
-*Built with ❤️ by [Your Name]*
+*Built with ❤️ by [Ignacio Diaz Neila]*
 
 </div>
