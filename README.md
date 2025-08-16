@@ -285,8 +285,8 @@ We welcome contributions! Please follow these steps:
 
 ## 📞 Support & Contact
 
-- **Email**: [ignaciodiazneila@gmail.com]
-- **LinkedIn**: [https://www.linkedin.com/in/ignacio-agustin-diaz-neila-0359581b4/]
+- **Email**: ignaciodiazneila@gmail.com
+- **LinkedIn**: https://www.linkedin.com/in/ignacio-agustin-diaz-neila-0359581b4/
 
 ## 📄 License
 
@@ -298,8 +298,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **⭐ If you found this project helpful, please give it a star! ⭐**
 
-![NovaStore Logo](public/logo.png)
 
-*Built with ❤️ by [Ignacio Diaz Neila]*
+*Built by Ignacio Diaz Neila*
 
 </div>
