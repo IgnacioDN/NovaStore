@@ -1,68 +1,88 @@
-/* Importar fuentes de Google */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap');
 
-/* Definir variables de color */
+/* Paleta: boutique editorial (crema + terracota), distinta a las otras dos webs */
 :root {
-  --primary-color: #9dadbe;
-  --secondary-color: #ecf0f1;
-  --accent-color: #3498db;
-  --text-color: #333;
+  --ink: #1a1a1a;
+  --paper: #f7f5f0;
+  --paper-dim: #efece4;
+  --clay: #b76e4b;
+  --clay-dark: #96543a;
+  --clay-soft: #f1e0d6;
+  --line: #e2ddd1;
+
+  --primary-color: var(--clay);
+  --secondary-color: var(--paper-dim);
+  --accent-color: var(--clay);
+  --text-color: var(--ink);
+  --text-secondary: #5c574c;
+  --text-muted: #8a8478;
   --light-color: #ffffff;
-  --danger-color: #e74c3c;
+  --danger-color: #b3402f;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+
+  --radius: 4px;
+  --radius-lg: 8px;
 }
 
 /* Estilos base */
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-body);
   color: var(--text-color);
-  background-color: var(--secondary-color);
+  background-color: var(--paper);
   margin: 0;
   padding: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-display);
   font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 a {
   text-decoration: none;
-  color: var(--accent-color);
+  color: var(--ink);
 }
 
 a:hover {
-  color: var(--primary-color);
+  color: var(--clay);
 }
 
 /* Botones */
 .btn {
   display: inline-block;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: 500;
+  padding: 12px 24px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
   text-align: center;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+  border-radius: var(--radius);
+  transition: all 0.25s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
 }
 
 .btn-primary {
-  background-color: var(--primary-color);
+  background-color: var(--ink);
   color: var(--light-color);
-  border: none;
+  border-color: var(--ink);
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-color);
+  background-color: var(--clay);
+  border-color: var(--clay);
 }
 
 .btn-secondary {
-  background-color: var(--secondary-color);
-  color: var(--text-color);
-  border: 1px solid var(--primary-color);
+  background-color: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
 }
 
 .btn-secondary:hover {
-  background-color: var(--primary-color);
+  background-color: var(--ink);
   color: var(--light-color);
 }
 
