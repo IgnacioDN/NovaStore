@@ -29,7 +29,7 @@
 
 ## 🚀 Live Demo
 
-**[View Live Demo](https://your-novastore-site.netlify.app)** 
+**[View Live Demo](https://novastoredn.netlify.app/)** 
 
 ## 📸 Screenshots
 
