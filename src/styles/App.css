@@ -297,19 +297,19 @@ main {
 }
 
 .banner-box.gray .banner-content {
-  background-color: var(--paper-dim);
+  background-color: #6c757d7a;
 }
 
 .banner-box.blue .banner-content {
-  background-color: var(--clay-soft);
+  background-color: #93cbde;
 }
 
 .promo-banners .banner-box:nth-child(1) .banner-content {
-  background-color: var(--paper-dim);
+  background-color: #6c757d7a;
 }
 
 .promo-banners .banner-box:nth-child(2) .banner-content {
-  background-color: var(--clay-soft);
+  background-color: #93cbde;
 }
 
 /*Products Carousel*/
@@ -324,11 +324,97 @@ main {
   border: 1px solid var(--line);
 }
 
+/* ---------- Info cintillo (rediseñado) ---------- */
+.info-cintillo {
+  background: var(--paper-dim);
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
 
+.info-cintillo .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
+.info-cintillo .row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
 
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  transition: transform 0.2s ease;
+  padding: 0.5rem 1rem;
+  flex: 1;
+}
 
+.info-item i {
+  font-size: 1.4rem;
+  color: var(--clay);
+}
 
+.info-item p {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink);
+  font-family: var(--font-body);
+  text-align: center;
+}
+
+.info-item:hover {
+  transform: translateY(-2px);
+}
+
+.info-item:not(:last-child) {
+  border-right: 1px solid var(--line);
+}
+
+/* En mobile: ticker infinito en vez de grid apretado */
+@media (max-width: 768px) {
+  .info-cintillo .row {
+    display: flex;
+    width: max-content;
+    animation: infoMarquee 16s linear infinite;
+    gap: 2.5rem;
+  }
+
+  .info-item {
+    flex-direction: row;
+    white-space: nowrap;
+    border-right: none !important;
+    padding: 0;
+    flex: none;
+  }
+
+  .info-item i {
+    font-size: 1.1rem;
+  }
+
+  .info-item p {
+    font-size: 0.85rem;
+  }
+
+  @keyframes infoMarquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+/*Cintillo*/
+.informative-banner {
+  position: relative;
+  width: 100%;
+  min-height: 150vh;
+  overflow: visible;
+  margin-bottom: 40px
+}
 
 .video-container {
   position: relative;
@@ -424,7 +510,7 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--clay-soft);
+  background-color: #adb5bd;
   border-radius: var(--radius-lg);
   margin-top: 20px;
   padding: 40px;
