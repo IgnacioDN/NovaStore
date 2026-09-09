@@ -210,9 +210,6 @@ main {
 }
 
 /* Promo banners*/
-.menu-icon {
-  display: none;
-}
 
 .banners-container {
   width: 100%;
@@ -274,7 +271,7 @@ main {
 }
 
 .banner-btn:hover {
-  background-color: #d2d2d2;
+  background-color: var(--clay-dark);
   border-color: var(--clay-dark);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
   transform: translateY(-2px);
