@@ -1,0 +1,52 @@
+.promo-banners-dots {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .promo-banners-track {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    touch-action: pan-x;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    gap: 1rem;
+  }
+
+  .promo-banners-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .promo-banners .banner-box {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .promo-banners-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .promo-banners-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    border: none;
+    padding: 0;
+    background: var(--line);
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .promo-banners-dot.active {
+    width: 22px;
+    background: var(--clay);
+  }
+}
