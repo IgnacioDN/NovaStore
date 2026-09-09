@@ -267,13 +267,17 @@ main {
   font-weight: 600;
   text-decoration: none;
   border-radius: var(--radius);
-  transition: background-color 0.3s ease;
+  transition: all 0.25s ease;
   display: inline-block;
   font-size: 0.9rem;
+  border: 1px solid var(--ink);
 }
 
 .banner-btn:hover {
-  background-color: var(--clay);
+  background-color: var(--clay-dark);
+  border-color: var(--clay-dark);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  transform: translateY(-2px);
 }
 
 .banner-img-container {
