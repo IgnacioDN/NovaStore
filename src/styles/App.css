@@ -501,9 +501,7 @@ main {
 .newsletter-container {
   position: relative;
   width: 100%;
-  height: 70vh;
   margin-bottom: 40px;
-  
 }
 
 .newsletter-banner {
@@ -518,7 +516,6 @@ main {
   flex-wrap: wrap;
   width: 100%;
   box-sizing: border-box;
-  height: 100%;
 }
 
 .newsletter-content {
