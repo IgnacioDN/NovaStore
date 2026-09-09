@@ -11,8 +11,8 @@
 
 /* Header */
 .header {
-  background: var(--paper);
-  border-bottom: 1px solid var(--line);
+  background: var(--ink);
+  border-bottom: 1px solid rgba(247, 245, 240, 0.1);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -36,7 +36,7 @@
   font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--paper);
   margin: 0;
   letter-spacing: -0.01em;
 }
@@ -54,7 +54,7 @@
   font-family: var(--font-body);
   font-size: 0.92rem;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: rgba(247, 245, 240, 0.7);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   padding-bottom: 4px;
@@ -64,14 +64,14 @@
 
 .nav-menu a:hover,
 .nav-menu a.active {
-  color: var(--ink);
+  color: var(--paper);
   border-bottom-color: var(--clay);
 }
 
 .menu-icon {
   display: none;
   font-size: 1.4rem;
-  color: var(--ink);
+  color: var(--paper);
   cursor: pointer;
 }
 
@@ -84,7 +84,7 @@
 
 .icon {
   font-size: 1.05rem;
-  color: var(--ink);
+  color: var(--paper);
   cursor: pointer;
   transition: color 0.2s ease;
 }
@@ -114,7 +114,7 @@
   padding: 0 2px;
 }
 
-/* Responsive */
+/* Responsive: menú mobile */
 @media (max-width: 900px) {
   .menu-icon {
     display: block;
@@ -127,13 +127,14 @@
     height: 100vh;
     width: 78vw;
     max-width: 320px;
-    background: var(--paper);
+    background: var(--ink);
     flex-direction: column;
     gap: 0;
-    padding: 5rem 2rem 2rem;
+    padding: 5.5rem 2rem 2rem;
     transform: translateX(100%);
     transition: transform 0.3s ease;
-    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.08);
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.3);
+    z-index: 200;
   }
 
   .nav-menu.open {
@@ -141,12 +142,24 @@
   }
 
   .nav-menu li {
-    border-bottom: 1px solid var(--line);
+    width: 100%;
+  }
+
+  .nav-menu li + li {
+    border-top: 1px solid rgba(247, 245, 240, 0.12);
   }
 
   .nav-menu a {
     display: block;
-    padding: 1rem 0;
+    padding: 1.15rem 0;
+    font-size: 1rem;
+    color: var(--paper);
+    border-bottom: none !important;
+  }
+
+  .nav-menu a:hover {
+    color: var(--clay);
+    padding-left: 0.4rem;
   }
 
   .header-container {
