@@ -1,30 +1,34 @@
-.info-cintillo {
+.ns-cintillo {
   background: var(--paper-dim);
   border-bottom: 1px solid var(--line);
   overflow: hidden;
   padding: 1.25rem 0;
 }
 
-.info-cintillo-track {
+.ns-cintillo-track {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   width: max-content;
   gap: 3rem;
   padding: 0 1.5rem;
 }
 
-.info-item {
+.ns-cintillo-item {
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 0.6rem;
   white-space: nowrap;
+  flex: none;
 }
 
-.info-item i {
+.ns-cintillo-item i {
   font-size: 1.3rem;
   color: var(--clay);
 }
 
-.info-item p {
+.ns-cintillo-item p {
   margin: 0;
   font-size: 0.85rem;
   font-weight: 600;
@@ -34,7 +38,7 @@
 
 /* Desktop: los 4 originales distribuidos parejo, se ocultan los 4 duplicados */
 @media (min-width: 769px) {
-  .info-cintillo-track {
+  .ns-cintillo-track {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
@@ -43,33 +47,33 @@
     padding: 0 2rem;
   }
 
-  .info-item:nth-child(n + 5) {
+  .ns-cintillo-item:nth-child(n + 5) {
     display: none;
   }
 }
 
 /* Mobile: loop infinito con los 8 (4 + 4 duplicados) */
 @media (max-width: 768px) {
-  .info-cintillo-track {
-    animation: infoMarquee 18s linear infinite;
+  .ns-cintillo-track {
+    animation: nsCintilloMarquee 18s linear infinite;
   }
 
-  .info-item i {
+  .ns-cintillo-item i {
     font-size: 1.05rem;
   }
 
-  .info-item p {
+  .ns-cintillo-item p {
     font-size: 0.8rem;
   }
 }
 
-@keyframes infoMarquee {
+@keyframes nsCintilloMarquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .info-cintillo-track {
+  .ns-cintillo-track {
     animation: none !important;
   }
 }
