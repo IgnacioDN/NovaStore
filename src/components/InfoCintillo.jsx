@@ -11,10 +11,10 @@ const items = [
 
 function InfoCintillo() {
   return (
-    <section className="info-cintillo">
-      <div className="info-cintillo-track">
+    <section className="ns-cintillo">
+      <div className="ns-cintillo-track">
         {[...items, ...items].map((item, idx) => (
-          <div className="info-item" key={idx}>
+          <div className="ns-cintillo-item" key={idx}>
             <i className={`bi ${item.icon}`}></i>
             <p>{item.label}</p>
           </div>
