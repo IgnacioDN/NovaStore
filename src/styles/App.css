@@ -922,7 +922,7 @@ hr {
   }
 
   .banner-video-content {
-    padding: 2rem 1rem;
+    padding: 1.25rem 1rem;
     text-align: center;
     display: flex;
     align-items: center;
@@ -978,10 +978,12 @@ hr {
 
   .newsletter-content h2 {
     font-size: 1.5rem;
+    margin-bottom: 0.6rem;
   }
 
   .newsletter-content p {
     font-size: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   .btn-subscribe {
