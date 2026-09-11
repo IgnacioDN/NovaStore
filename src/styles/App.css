@@ -796,6 +796,11 @@ hr {
     padding: 1rem;
   }
 
+  .products-header {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
   .products-header h2 {
     font-size: 20px;
     font-weight: 600;
