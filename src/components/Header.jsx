@@ -49,39 +49,56 @@ const Header = () => {
               </NavLink>
             </div>
 
-            {menuOpen ? (
-              <FaTimes className="menu-icon" onClick={() => setMenuOpen(false)} />
-            ) : (
-              <FaBars className="menu-icon" onClick={() => setMenuOpen(true)} />
+            <button
+              className="menu-icon"
+              onClick={() => setMenuOpen(true)}
+              aria-label="Abrir menú"
+            >
+              <FaBars />
+            </button>
+
+            {/* Overlay oscuro detrás del panel, para cerrar tocando afuera */}
+            {menuOpen && (
+              <div className="nav-menu-overlay" onClick={() => setMenuOpen(false)}></div>
             )}
 
-            <ul className={`nav-menu ${menuOpen ? "open" : ""}`}>
-              <li>
-                <NavLink to="/men" onClick={() => setMenuOpen(false)} className={({ isActive }) => (isActive ? "active" : "")}>
-                  Men
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/women" onClick={() => setMenuOpen(false)} className={({ isActive }) => (isActive ? "active" : "")}>
-                  Women
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/accessories" onClick={() => setMenuOpen(false)} className={({ isActive }) => (isActive ? "active" : "")}>
-                  Accessories
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/blog" onClick={() => setMenuOpen(false)} className={({ isActive }) => (isActive ? "active" : "")}>
-                  Blog
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/shop" onClick={() => setMenuOpen(false)} className={({ isActive }) => (isActive ? "active" : "")}>
-                  Shop
-                </NavLink>
-              </li>
-            </ul>
+            <div className={`nav-menu ${menuOpen ? "open" : ""}`}>
+              <button
+                className="nav-menu-close"
+                onClick={() => setMenuOpen(false)}
+                aria-label="Cerrar menú"
+              >
+                <FaTimes />
+              </button>
+
+              <ul>
+                <li>
+                  <NavLink to="/men" onClick={() => setMenuOpen(false)} className={({ isActive }) => (isActive ? "active" : "")}>
+                    Men
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/women" onClick={() => setMenuOpen(false)} className={({ isActive }) => (isActive ? "active" : "")}>
+                    Women
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/accessories" onClick={() => setMenuOpen(false)} className={({ isActive }) => (isActive ? "active" : "")}>
+                    Accessories
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/blog" onClick={() => setMenuOpen(false)} className={({ isActive }) => (isActive ? "active" : "")}>
+                    Blog
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/shop" onClick={() => setMenuOpen(false)} className={({ isActive }) => (isActive ? "active" : "")}>
+                    Shop
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
 
             <div className="nav-icons">
               <FaSearch className="icon search-icon" onClick={openSearchModal} />
