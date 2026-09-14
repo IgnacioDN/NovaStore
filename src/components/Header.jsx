@@ -45,9 +45,7 @@ const Header = () => {
           <div className="header-container">
             <div className="header__logo">
               <NavLink to="/" onClick={() => setMenuOpen(false)}>
-                <h1>
-                  URBAN<span className="logo-badge">27</span>
-                </h1>
+                <h1>Urban27</h1>
               </NavLink>
             </div>
 
