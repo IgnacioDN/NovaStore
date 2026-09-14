@@ -1,4 +1,4 @@
-# 🛍️ NovaStore - Modern E-Commerce Platform
+# 🛍️ Urban27 - Modern E-Commerce Platform
 
 [![React](https://img.shields.io/badge/React-18+-blue.svg)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-5+-purple.svg)](https://vitejs.dev/)
