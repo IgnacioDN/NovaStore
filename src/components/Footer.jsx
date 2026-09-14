@@ -71,7 +71,7 @@ const Footer = () => {
         </div>
         <hr />
         <div className="footer-bottom">
-          <p>© 2025 | <strong>NovaStore</strong> | Theme by <a href="#">Ignacio Diaz Neila</a></p>
+          <p>© 2025 | <strong>Urban27</strong> | Theme by <a href="#">Ignacio Diaz Neila</a></p>
           <div className="social-icons">
             <a href="#"><FaFacebookF /></a>
             <a href="#"><FaInstagram /></a>
