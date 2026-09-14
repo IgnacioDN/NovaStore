@@ -23,9 +23,9 @@ export default function Login({ onLogin }) {
       <div className="login-container">
         <div className="login-header">
           <h2>Welcome Back</h2>
-          <p>Sign in to your NovaStore account</p>
+          <p>Sign in to your Urban27 account</p>
         </div>
-        
+
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="input-group">
             <FaUser className="input-icon" />
@@ -37,7 +37,7 @@ export default function Login({ onLogin }) {
               required
             />
           </div>
-          
+
           <div className="input-group">
             <FaLock className="input-icon" />
             <input
@@ -55,7 +55,7 @@ export default function Login({ onLogin }) {
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
           </div>
-          
+
           <div className="login-options">
             <label className="remember-me">
               <input type="checkbox" />
@@ -63,13 +63,13 @@ export default function Login({ onLogin }) {
             </label>
             <a href="#" className="forgot-password">Forgot password?</a>
           </div>
-          
+
           <button type="submit" className="login-btn">
             Sign In
           </button>
-          
+
           {error && <div className="login-error">{error}</div>}
-          
+
           <div className="login-footer">
             <p>Don't have an account? <a href="#" className="signup-link">Sign up</a></p>
           </div>
@@ -78,4 +78,3 @@ export default function Login({ onLogin }) {
     </div>
   );
 }
-
