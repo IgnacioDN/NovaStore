@@ -20,7 +20,7 @@ const InformativeSection = () => {
         <article className="banner-video-one">
           <div className="banner-video-content">
             <div className="video-text">
-              <h2>NovaStore is growing fast.</h2>
+              <h2>Urban27 is growing fast.</h2>
               <p>Explore with us new opportunities.</p>
               <button className="bannervideo-btn" onClick={handleShopNow}>Shop Now</button>
             </div>
