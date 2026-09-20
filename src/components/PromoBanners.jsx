@@ -6,6 +6,7 @@ import '../styles/PromoBanners.css';
 const banners = [
   {
     className: 'gray',
+    eyebrow: 'Menswear',
     title: 'Shop Men',
     text: "Explore our latest men's collection",
     link: '/men',
@@ -14,6 +15,7 @@ const banners = [
   },
   {
     className: 'blue',
+    eyebrow: 'Womenswear',
     title: 'Shop Women',
     text: 'Discover the newest styles for her',
     link: '/women',
@@ -68,6 +70,7 @@ const PromoBanners = () => {
             >
               <div className="banner-content">
                 <section className="banner-text">
+                  <span className="banner-eyebrow">{banner.eyebrow}</span>
                   <h3>{banner.title}</h3>
                   <p>{banner.text}</p>
                   <a href={banner.link} className="banner-btn">
