@@ -119,7 +119,6 @@ const ProductDetail = () => {
         <div className="pdp-product-info">
           <h1 className="pdp-product-title">{product.title}</h1>
           <div className="pdp-product-price">${product.price}</div>
-          <p className="pdp-product-description">{product.description}</p>
           <div className="pdp-add-to-cart-wrapper">
             {/* Size selector */}
       <div className="pdp-size-selector">
