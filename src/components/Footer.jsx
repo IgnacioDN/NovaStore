@@ -25,7 +25,7 @@ const Footer = () => {
     return (
       <footer className="footer footer-mobile">
         <div className="footer-brand-mobile" style={{ marginBottom: 20 }}>
-          <h2 className="footer-brand-mobile-title">Urban27</h2>
+          <h1 className="footer-brand-mobile-title">Urban27</h1>
         </div>
         <div className="footer-accordion">
           <button className="footer-accordion-header" onClick={() => toggleSection('product')}>
