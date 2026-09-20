@@ -119,14 +119,6 @@ const ProductDetail = () => {
         <div className="pdp-product-info">
           <h1 className="pdp-product-title">{product.title}</h1>
           <div className="pdp-product-price">${product.price}</div>
-          <div className="pdp-product-rating">
-            {product.rating && (
-              <>
-                <Rating value={product.rating.rate} />
-                <span className="pdp-review-count">{product.rating.count} reviews</span>
-              </>
-            )}
-          </div>
           <p className="pdp-product-description">{product.description}</p>
           <div className="pdp-add-to-cart-wrapper">
             {/* Size selector */}
