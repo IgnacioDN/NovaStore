@@ -414,6 +414,7 @@ main {
   width: 100%;
   min-height: 150vh;
   overflow: visible;
+  margin-bottom: 40px
 }
 
 .video-container {
@@ -584,6 +585,15 @@ main {
 
 .footer-brand h2 {
   font-family: var(--font-display);
+}
+
+.footer-brand-mobile-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--paper);
+  letter-spacing: -0.01em;
+  margin: 0;
 }
 
 .footer-links {
