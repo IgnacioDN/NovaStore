@@ -412,7 +412,6 @@ main {
 .informative-banner {
   position: relative;
   width: 100%;
-  min-height: 150vh;
   overflow: visible;
   margin-bottom: 40px
 }
@@ -446,6 +445,17 @@ main {
 
 }
 
+/* Degradado sutil para que el texto respire sobre el video */
+.banner-video-one::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 16px;
+  background: linear-gradient(90deg, rgba(26, 26, 26, 0.65) 0%, rgba(26, 26, 26, 0.25) 45%, rgba(26, 26, 26, 0) 70%);
+  pointer-events: none;
+}
+
 .banner-video-content {
   position: relative;
   z-index: 2;
@@ -460,9 +470,20 @@ main {
 .video-text {
   border-radius: 12px;
   max-width: 600px;
-  animation: fadeIn 1s ease-in-out;
   display: flex;
   flex-direction: column;
+}
+
+.video-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--clay);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.75rem;
+  opacity: 0;
+  animation: videoTextIn 0.6s ease-out 0.1s forwards;
 }
 
 .video-text h2 {
@@ -470,6 +491,8 @@ main {
   font-size: 2.5rem;
   font-weight: 600;
   margin-bottom: 20px;
+  opacity: 0;
+  animation: videoTextIn 0.6s ease-out 0.25s forwards;
 }
 
 
@@ -477,6 +500,19 @@ main {
   font-size: 1.1rem;
   margin-bottom: 20px;
   font-weight: 400;
+  opacity: 0;
+  animation: videoTextIn 0.6s ease-out 0.4s forwards;
+}
+
+@keyframes videoTextIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 
@@ -484,18 +520,27 @@ main {
   background-color: var(--ink);
   color: #fff;
   padding: 0.6rem 1.2rem;
-  border: none;
+  border: 1px solid var(--ink);
   border-radius: var(--radius);
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.25s ease;
   display: inline-block;
   text-decoration: none;
   width: auto;
   max-width: fit-content;
+  opacity: 0;
+  animation: videoTextIn 0.6s ease-out 0.55s forwards;
 }
 
-.bannervideo-btn:hover, .btn-subscribe:hover {
+.bannervideo-btn:hover {
+  background-color: var(--clay-dark);
+  border-color: var(--clay-dark);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  transform: translateY(-2px);
+}
+
+.btn-subscribe:hover {
   background-color: var(--clay);
 }
 
