@@ -234,11 +234,35 @@ main {
 }
 
 .banner-content {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
   height: 300px;
+  overflow: hidden;
+}
+
+.banner-content::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.35) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+  animation: bannerDrift 20s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes bannerDrift {
+  from { background-position: 0 0; }
+  to { background-position: 220px 220px; }
+}
+
+.banner-text,
+.banner-img-container {
+  position: relative;
+  z-index: 1;
 }
 
 .banner-text {
@@ -271,9 +295,10 @@ main {
 }
 
 .banner-btn:hover {
-  background-color: var(--clay-dark);
-  border-color: var(--clay-dark);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  background-color: var(--paper);
+  color: var(--ink);
+  border-color: var(--paper);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
   transform: translateY(-2px);
 }
 
@@ -1150,6 +1175,12 @@ hr {
   }
 }
 
+
+@media (prefers-reduced-motion: reduce) {
+  .banner-content::before {
+    animation: none;
+  }
+}
 
 @media (min-width: 1400px) {
   .informative-banner .video-container {
