@@ -12,7 +12,7 @@ const featured = [
     title: "5 Summer Trends You Can't Miss in 2025",
     category: "Trends",
     excerpt: "Discover the must-have clothing styles and colors for this summer, curated by our NovaStore team.",
-    author: "NovaStore Team",
+    author: "Urban27 Team",
     date: "Jul 2025",
     img: summerTrends
   },
@@ -21,7 +21,7 @@ const featured = [
     title: "How to Care for Your Favorite Clothes",
     category: "Care Tips",
     excerpt: "Extend the life of your garments with these easy care tips for every fabric.",
-    author: "NovaStore Editors",
+    author: "Urban27 Editors",
     date: "Jun 2025",
     img: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=600&q=80",
     imgCategory: careTips
@@ -70,7 +70,7 @@ const BlogLanding = () => {
     <div className="blog-landing-wrapper">
       <section className="hero">
         <div className="hero-content">
-          <h1>NovaStore Blog</h1>
+          <h1>Urban27 Blog</h1>
           <p>
             Discover fashion tips, care guides, and the latest trends from NovaStore. Stay inspired and shop smarter every season.
           </p>
