@@ -27,7 +27,7 @@ const Banner = () => {
       /> 
       <div className="banner-overlay"></div>
       <div className="banner-text">
-        <h1>Welcome to NovaStore</h1>
+        <h1>Welcome to Urban27</h1>
         <p>Discover the best products in one place</p>
         <Link to="/men" className="banner-btn">Explore Now</Link>
       </div>
@@ -36,4 +36,3 @@ const Banner = () => {
 }; 
 
 export default Banner;
-
