@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Rating from "../components/Rating";
 import { useCart } from "../context/CartContext";
-import { Link } from "react-router-dom"; // <--- Add import
+import { Link } from "react-router-dom";
 import { fixProductImages, handleImageError } from "../utils/imageUtils";
+import "../styles/ProductList.css";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -26,6 +27,9 @@ const ProductList = () => {
       });
   }, []);
 
+  // Duplicamos la lista para que el loop del carrusel sea continuo, sin corte
+  const loopProducts = [...products, ...products];
+
   return (
     <section className="products-section">
       <div className="products-container">
@@ -36,35 +40,37 @@ const ProductList = () => {
         {loading ? (
           <p>Loading Products...</p>
         ) : (
-          <div className="products-grid">
-            {products.map((product) => (
-              <div key={product.id} className="product-card">
-                <div className="product-img">
-                  <Link to={`/product/${product.id}`}>
-                    <img 
-                      src={product.image} 
-                      alt={product.title} 
-                      onError={handleImageError}
-                      loading="lazy"
-                    />
-                  </Link>
-                </div>
-                <div className="product-title">
-                  <Link to={`/product/${product.id}`} style={{ color: "inherit", textDecoration: "none" }}>
-                    {product.title}
-                  </Link>
-                </div>
-                <div className="product-info">
-                  <div className="product-rating">
-                    <Rating value={product.rating.rate} count={product.rating.count} />
+          <div className="newest-products-wrapper">
+            <div className="newest-products-track">
+              {loopProducts.map((product, idx) => (
+                <div key={`${product.id}-${idx}`} className="product-card">
+                  <div className="product-img">
+                    <Link to={`/product/${product.id}`}>
+                      <img
+                        src={product.image}
+                        alt={product.title}
+                        onError={handleImageError}
+                        loading="lazy"
+                      />
+                    </Link>
                   </div>
-                  <div className="product-price">${product.price}</div>
+                  <div className="product-title">
+                    <Link to={`/product/${product.id}`} style={{ color: "inherit", textDecoration: "none" }}>
+                      {product.title}
+                    </Link>
+                  </div>
+                  <div className="product-info">
+                    <div className="product-rating">
+                      <Rating value={product.rating.rate} count={product.rating.count} />
+                    </div>
+                    <div className="product-price">${product.price}</div>
+                  </div>
+                  <button className="add-to-cart-btn" onClick={() => addToCart(product)}>
+                    Add To Cart
+                  </button>
                 </div>
-                <button className="add-to-cart-btn" onClick={() => addToCart(product)}>
-                  Add To Cart
-                </button>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         )}
       </div>
