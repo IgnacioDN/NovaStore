@@ -2,6 +2,50 @@
   display: none;
 }
 
+.banner-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink);
+  opacity: 0.6;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+/* Zoom sutil de la foto al pasar el mouse */
+.banner-img-container {
+  overflow: hidden;
+}
+
+.banner-img {
+  transition: transform 0.5s ease;
+}
+
+.banner-box:hover .banner-img {
+  transform: scale(1.06);
+}
+
+/* Desktop: 2 columnas lado a lado en vez de apiladas */
+@media (min-width: 769px) {
+  .promo-banners-track {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .promo-banners .banner-box {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .promo-banners .banner-content {
+    height: 340px;
+    padding: 0 2.25rem;
+  }
+}
+
 @media (max-width: 768px) {
   .promo-banners-track {
     display: flex;
