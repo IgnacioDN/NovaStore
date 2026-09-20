@@ -1,0 +1,51 @@
+.newest-products-wrapper {
+  overflow: hidden;
+  padding: 0.5rem 0 1.5rem;
+}
+
+.newest-products-track {
+  display: flex;
+  gap: 28px;
+  width: max-content;
+  animation: newestProductsScroll 32s linear infinite;
+}
+
+.newest-products-wrapper:hover .newest-products-track {
+  animation-play-state: paused;
+}
+
+.newest-products-track .product-card {
+  flex: 0 0 260px;
+  width: 260px;
+}
+
+@keyframes newestProductsScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .newest-products-track .product-card {
+    flex: 0 0 200px;
+    width: 200px;
+  }
+
+  .newest-products-track {
+    gap: 0.8rem;
+    animation-duration: 24s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .newest-products-track {
+    animation: none;
+  }
+
+  .newest-products-wrapper {
+    overflow-x: auto;
+  }
+}
