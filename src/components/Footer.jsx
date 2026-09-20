@@ -25,16 +25,7 @@ const Footer = () => {
     return (
       <footer className="footer footer-mobile">
         <div className="footer-brand-mobile" style={{ marginBottom: 20 }}>
-          <h2 style={{
-            fontFamily: "'Poppins', sans-serif",
-            fontWeight: 700,
-            fontSize: "2rem",
-            color: "#fff",
-            letterSpacing: "1px",
-            textShadow: "0 0 8px #fff, 0 0 24px #fff"
-          }}>
-            NovaStore
-          </h2>
+          <h2 className="footer-brand-mobile-title">Urban27</h2>
         </div>
         <div className="footer-accordion">
           <button className="footer-accordion-header" onClick={() => toggleSection('product')}>
@@ -87,7 +78,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-top">
         <div className="footer-brand">
-          <h2>NovaStore</h2>
+          <h2>Urban27</h2>
         </div>
         <div className="footer-links">
           <div className="footer-column">
@@ -121,7 +112,7 @@ const Footer = () => {
       </div>
       <hr />
       <div className="footer-bottom">
-        <p>© 2025 | <strong>NovaStore</strong> | Theme by <a href="#">Ignacio Diaz Neila</a></p>
+        <p>© 2025 | <strong>Urban27</strong> | Theme by <a href="#">Ignacio Diaz Neila</a></p>
         <div className="social-icons">
           <a href="#"><FaFacebookF /></a>
           <a href="#"><FaInstagram /></a>
