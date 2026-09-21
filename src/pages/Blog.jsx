@@ -162,7 +162,7 @@ const BlogLanding = () => {
           <div className="bio">
             <h4>About Urban27</h4>
             <p>
-              NovaStore is dedicated to bringing you the latest in fashion, practical tips, and exclusive collections. Our team curates content to help you enjoy and care for your wardrobe.
+              Urban27 is dedicated to bringing you the latest in fashion, practical tips, and exclusive collections. Our team curates content to help you enjoy and care for your wardrobe.
             </p>
           </div>
         </div>
