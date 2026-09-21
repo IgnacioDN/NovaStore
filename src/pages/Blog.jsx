@@ -31,7 +31,7 @@ const featured = [
     title: "From Cart to Closet: Our Best-Selling Items",
     category: "Best Sellers",
     excerpt: "Explore our most popular pieces and why customers love them.",
-    author: "NovaStore Team",
+    author: "Urban27 Team",
     date: "May 2025",
     img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80",
     imgCategory: bestSeller
@@ -160,7 +160,7 @@ const BlogLanding = () => {
         <div className="author-card">
           <img src={aboutNovastore} alt="NovaStore Team" />
           <div className="bio">
-            <h4>About NovaStore</h4>
+            <h4>About Urban27</h4>
             <p>
               NovaStore is dedicated to bringing you the latest in fashion, practical tips, and exclusive collections. Our team curates content to help you enjoy and care for your wardrobe.
             </p>
