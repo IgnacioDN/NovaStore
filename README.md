@@ -29,7 +29,7 @@
 
 ## 🚀 Live Demo
 
-**[View Live Demo](https://novastoredn.netlify.app/)** 
+**[View Live Demo](urban27.netlify.app)** 
 
 ## 📸 Screenshots
 
